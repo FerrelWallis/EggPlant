@@ -1,0 +1,38 @@
+
+<div class="header">
+    <div class="container">
+        <div class="header-main">
+            <div class="header-right">
+                <div class="logo">
+                    <h1><a href="index.html">Eggplant Genome Database</a></h1>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+
+<div class="top-navg-main">
+    <div class="container">
+        <div class="top-navg">
+            <span class="menu"> <img src="/assets/images/icon.png" alt=""/></span>
+            <ul class="res">
+                <li><a class="active hvr-sweep-to-bottom" href="@routes.HomeController.index()">Home</a></li>
+                <li><a class="hvr-sweep-to-bottom" href="contact.html">Browse</a></li>
+                <li><a class="hvr-sweep-to-bottom" href="gallery.html">Blast</a></li>
+                <li><a class="hvr-sweep-to-bottom" href="@routes.HomeController.download()">Download</a></li>
+                <li><a class="hvr-sweep-to-bottom" href="@routes.HomeController.about()">about</a></li>
+            </ul>
+            <script>
+                    $( "span.menu" ).click(function() {
+                        $( "ul.res" ).slideToggle( 300, function() {
+
+                        });
+                    });
+            </script>
+        </div>
+    </div>
+</div>
+
+
+

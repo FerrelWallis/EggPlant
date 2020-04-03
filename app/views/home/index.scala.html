@@ -1,0 +1,73 @@
+
+@main("Eggplant Genome Database") {
+
+    <div class="banner">
+        <div class="container">
+            <div class="banner-main">
+                <h3>about this project</h3>
+                <p>The eggplant (Solanum melongena L.) is one of the most important vegetable crop species in Japan as well as in other Asian, Middle and Near Eastarn, Mediterranean and African countries.</p>
+                <a href="@routes.HomeController.about()">Read More</a>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bann-info">
+        <div class="container">
+            <div class="bann-info-main">
+                <div class="col-md-3 bann-grid">
+                    <div class="agro-grain"><span class="glyphicon glyphicon-grain" aria-hidden="true"> </span></div>
+                </div>
+                <div class="col-md-5 bann-grid">
+                    <h2>Navigation</h2>
+                    <p>We provide browsing, blast and download functions. You can also find more information about the project, team and contact information at "about Us".</p>
+
+                </div>
+                <div class="col-md-4 bann-grid">
+                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"> </span>
+                    <h3>Download Files</h3>
+
+                    <a href="single.html" class="hvr-wobble-bottom">Download</a>
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="we-do">
+        <div class="container">
+            <div class="wedo-main">
+                <div class="col-md-4 wedo-grid">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"> </span>
+                    <h3>Browse</h3>
+                    <h4>You can view relevant genetic information, which shows gene location, function and sequence information.</h4>
+                    <p></p>
+                    <a href="single.html"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
+                </div>
+
+                <div class="col-md-4 wedo-grid">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"> </span>
+                    <h3>Blast </h3>
+                    <h4>Blast includes the function of alignment with genome, gene, and protein sequences.</h4>
+                    <p></p>
+                    <a href="single.html"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
+                </div>
+
+                <div class="col-md-4 wedo-grid">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
+                    <h3>about Us </h3>
+                    <h4>You can know more information about the project, the team, and our contact information here.</h4>
+                    <p>  </p>
+                    <a href="@routes.HomeController.about()"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+    @home.footer()
+}@import views.html.home.main

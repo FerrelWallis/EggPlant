@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Eggplant Genome Database</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+
+	<link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.versioned("css/bootstrap.css")" >
+	<link rel="stylesheet" type="text/css" media="all" href="@routes.Assets.versioned("css/style.css")"/>
+	<link href="@routes.Assets.versioned("css/popuo-box.css")" rel="stylesheet" type="text/css" media="all"/>
+
+	<script src="@routes.Assets.versioned("js/jquery-1.11.0.min.js")" type="text/javascript" ></script>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }></script>
+	<script type="text/javascript" src="@routes.Assets.versioned("js/move-top.js")" ></script>
+	<script type="text/javascript" src="@routes.Assets.versioned("js/easing.js")"></script>
+	<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+	</script>
+
+	<script type="text/javascript" src="@routes.Assets.versioned("js/menu_jquery.js")"></script>
+	<script src="@routes.Assets.versioned("js/jquery.magnific-popup.js")" type="text/javascript"></script>
+	<script>
+			$(document).ready(function() {
+				$('.popup-with-zoom-anim').magnificPopup({
+					type: 'inline',
+					fixedContentPos: false,
+					fixedBgPos: true,
+					overflowY: 'auto',
+					closeBtnInside: true,
+					preloader: false,
+					midClick: true,
+					removalDelay: 300,
+					mainClass: 'my-mfp-zoom-in'
+				});
+
+			});
+	</script>
+</head>
+
+<body>
+
+<div class="header">
+	<div class="container">
+		<div class="header-main">
+			<div class="header-right">
+				<div class="logo">
+					<h1><a href="index.html">Eggplant Genome Database</a></h1>
+				</div>
+				<div class="header-login">
+					<div class="top-nav-right">
+						<div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
+							<div id="loginBox">
+								<form id="loginForm">
+									<fieldset id="body">
+										<fieldset>
+											<label for="email">Email Address</label>
+											<input type="text" name="email" id="email">
+										</fieldset>
+										<fieldset>
+											<label for="password">Password</label>
+											<input type="password" name="password" id="password">
+										</fieldset>
+										<input type="submit" id="login" value="Sign in">
+										<label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
+									</fieldset>
+									<span><a href="#">Forgot your password?</a></span>
+								</form>
+					        </div>
+					  </div>
+				   </div>
+		      </div>
+	     </div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+
+<div class="top-navg-main">
+	<div class="container">
+	    <div class="top-navg">
+			<span class="menu"> <img src="/assets/images/icon.png" alt=""/></span>
+			<ul class="res">
+				<li><a href="index.html" class="active hvr-sweep-to-bottom">Home</a></li>
+				<li><a class="hvr-sweep-to-bottom" href="contact.html">Browse</a></li>
+				<li><a class="hvr-sweep-to-bottom" href="gallery.html">Blast</a></li>
+				<li><a class="hvr-sweep-to-bottom" href="services.html">Download</a></li>
+				<li><a class="hvr-sweep-to-bottom" href="about.html">about</a></li>
+			</ul>
+			<script>
+					$( "span.menu" ).click(function() {
+						$( "ul.res" ).slideToggle( 300, function() {
+
+						});
+					});
+			</script>
+		   </div>
+	 </div>
+</div>
+
+<div class="banner">
+	<div class="container">
+		<div class="banner-main">
+			<h3>about this project</h3>
+			<p>The eggplant (Solanum melongena L.) is one of the most important vegetable crop species in Japan as well as in other Asian, Middle and Near Eastarn, Mediterranean and African countries.</p>
+			<a href="single.html">Read More</a>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+
+
+<div class="bann-info">
+	<div class="container">
+		<div class="bann-info-main">
+			    <div class="col-md-3 bann-grid">
+			    	<div class="agro-grain"><span class="glyphicon glyphicon-grain" aria-hidden="true"> </span></div>
+			    </div>
+			    <div class="col-md-5 bann-grid">
+					<h2>Navigation</h2>
+			    	<p>We provide browsing, blast and download functions. You can also find more information about the project, team and contact information at "about Us".</p>
+
+				</div>
+			    <div class="col-md-4 bann-grid">
+					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"> </span>
+					<h3>Download Files</h3>
+
+					<a href="single.html" class="hvr-wobble-bottom">Download</a>
+
+ 			    </div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+
+
+<div class="we-do">
+	<div class="container">
+		<div class="wedo-main">
+			<div class="col-md-4 wedo-grid">
+				<span class="glyphicon glyphicon-eye-open" aria-hidden="true"> </span>
+				<h3>Browse</h3>
+				<h4>You can view relevant genetic information, which shows gene location, function and sequence information.</h4>
+				<p></p>
+				<a href="single.html"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
+			</div>
+
+			<div class="col-md-4 wedo-grid">
+				<span class="glyphicon glyphicon-list-alt" aria-hidden="true"> </span>
+				<h3>Blast </h3>
+				<h4>Blast includes the function of alignment with genome, gene, and protein sequences.</h4>
+				<p></p>
+					<a href="single.html"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
+			</div>
+
+			<div class="col-md-4 wedo-grid">
+				<span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
+				<h3>about Us </h3>
+				<h4>You can know more information about the project, the team, and our contact information here.</h4>
+				<p>  </p>
+				<a href="single.html"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
+			</div>
+
+		  <div class="clearfix"> </div>	
+	   </div>
+   </div>
+</div>
+
+<div class="footer">
+	<div class="container">
+		<div class="footer-main">
+			<div class="copy-right">
+			<p>Copyright (C) 2013 All rights reserved <a href="http://www.kazusa.or.jp/" target="_blank" title="Kazusa DNA Research Institute">Kazusa DNA Research Institute</a> </p>
+		   </div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

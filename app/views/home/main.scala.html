@@ -1,0 +1,55 @@
+@(title: String)(content: Html)
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>@title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="" />
+
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.versioned("css/bootstrap.css")" >
+        <link rel="stylesheet" type="text/css" media="all" href="@routes.Assets.versioned("css/style.css")"/>
+        <link href="@routes.Assets.versioned("css/popuo-box.css")" rel="stylesheet" type="text/css" media="all"/>
+
+        <script src="@routes.Assets.versioned("js/jquery-1.11.0.min.js")" type="text/javascript" ></script>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("js/move-top.js")" ></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("js/easing.js")"></script>
+        <script type="text/javascript">
+                jQuery(document).ready(function($) {
+                    $(".scroll").click(function(event){
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                    });
+                });
+        </script>
+
+        <script type="text/javascript" src="@routes.Assets.versioned("js/menu_jquery.js")"></script>
+        <script src="@routes.Assets.versioned("js/jquery.magnific-popup.js")" type="text/javascript"></script>
+        <script>
+                $(document).ready(function() {
+                    $('.popup-with-zoom-anim').magnificPopup({
+                        type: 'inline',
+                        fixedContentPos: false,
+                        fixedBgPos: true,
+                        overflowY: 'auto',
+                        closeBtnInside: true,
+                        preloader: false,
+                        midClick: true,
+                        removalDelay: 300,
+                        mainClass: 'my-mfp-zoom-in'
+                    });
+
+                });
+        </script>
+    </head>
+
+    <body>
+
+        @home.header()
+
+        @content
+
+
+    </body>
+</html>
