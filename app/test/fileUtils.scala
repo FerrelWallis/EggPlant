@@ -20,22 +20,7 @@ object fileUtils {
 
     joinGo(takeWego,takeGolist)
 
-//    val test="molecular_function:\"Interacting selectively and non-covalently with a nucleotide, any compound consisting of a nucleoside that is esterified with (ortho)phosphate or an oligophosphate at any hydroxyl group on the ribose or deoxyribose.\" [GOC:mah, ISBN:0198547684](GO:0000166)," +
-//      "molecular_function:\"Interacting selectively and non-covalently with any nucleic acid.\" [GOC:jl](GO:0003676)," +
-//      "molecular_function:\"Catalysis of the formation of aminoacyl-tRNA from ATP, amino acid, and tRNA with the release of diphosphate and AMP.\" [ISBN:0198506732](GO:0004812)," +
-//      "molecular_function:\"Catalysis of the reaction: ATP + L-alanine + tRNA(Ala) = AMP + diphosphate + L-alanyl-tRNA(Ala).\" [EC:6.1.1.7](GO:0004813)," +
-//      "molecular_function:\"Interacting selectively and non-covalently with ATP, adenosine 5'-triphosphate, a universally important coenzyme and enzyme regulator.\" [ISBN:0198506732](GO:0005524)," +
-//      "cellular_component:\"All of the contents of a cell excluding the plasma membrane and nucleus, but including other subcellular structures.\" [ISBN:0198547684](GO:0005737)," +
-//      "biological_process:\"The process of coupling alanine to alanyl-tRNA, catalyzed by alanyl-tRNA synthetase. The alanyl-tRNA synthetase is a  class-II synthetases. The activated amino acid is transferred to the 3'-OH group of an alanine accetping tRNA.\" [GOC:mcc, ISBN:0716730510](GO:0006419)," +
-//      "biological_process:\"The chemical reactions and pathways by which the various amino acids become bonded to their corresponding tRNAs. The most common route for synthesis of aminoacyl tRNA is by the formation of an ester bond between the 3'-hydroxyl group of the most 3' adenosine of the tRNA and the alpha carboxylic acid  group of an amino acid, usually catalyzed by the cognate aminoacyl-tRNA ligase. A given aminoacyl-tRNA ligase aminoacylates all species of an isoaccepting group of tRNA molecules.\" [GOC:ma, GOC:mah, MetaCyc:Aminoacyl-tRNAs](GO:0043039)"
-//
-//    var dis=""
-//    if(test.indexOf("GO:0006419")!=(-1))
-//        dis=test.substring(0,test.indexOf("GO:0006419")-1)
-//    while(dis.indexOf("GO:")!=(-1)){
-//      dis=dis.substring(dis.indexOf("GO:")+12)
-//    }
-//    println("dis:"+dis)
+
 
   }
 
