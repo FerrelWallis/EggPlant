@@ -20,7 +20,7 @@ object fileUtils {
 
     joinGo(takeWego,takeGolist)
 
-
+    println("abc")
 
   }
 
