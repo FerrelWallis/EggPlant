@@ -1,22 +1,58 @@
 @main("Download") {
 
-    <div class="download">
-        <div class="container">
-            <div class="download-left">
-                <h3>Download</h3>
-            </div>
+    <div class="banner-three">
 
+        <div class="about">
+            <div class="container">
+                <div class="about-left">
+                    <h6>Download</h6>
+                </div>
+
+            </div>
         </div>
     </div>
 
-
-    <hr style="border-top: 1px solid #d9d9d9;"/>
-
-    <div class="" style="margin-left: 50px" id="download">
-        <h4>Genome data </h4>
-        <ul id="gansiUrl">
-        </ul>
+    <div class="container">
+        <div class="about-left" >
+            <h7>Genome data : </h7>
+            <ul id="filesUrl">
+            </ul>
+        </div>
     </div>
+
+    <script>
+
+
+            $(function () {
+
+                var download = ["02428.genome",
+                    "02428.IGDBv1.Allset.annotate",
+                    "02428.IGDBv1.Allset.annotate.go",
+                    "02428.IGDBv1.Allset.annotate.kegg_pathway",
+                    "02428.IGDBv1.Allset.annotate.pathway",
+                    "02428.IGDBv1.Allset.annotate.pfam",
+                    "02428.IGDBv1.Allset.cds.long.fasta",
+                    "02428.IGDBv1.Allset.gene.fasta",
+                    "02428.IGDBv1.Allset.gff",
+                    "02428.IGDBv1.Allset.interpro",
+                    "02428.IGDBv1.Allset.mrna.fasta",
+                    "02428.IGDBv1.Allset.pros.long.fasta",
+                    "02428.IGDBv1.Allset.tag",
+                    "02428.IGDBv1.Allset.trans.long.fasta"
+                ];
+
+                var html = "";
+                $.each(download,function (i,v) {
+                    html += "<li><a href='/Eggplant/download/download?name=" + v + "' target='_blank'>" + v + "</a></li>"
+                });
+
+                $("#filesUrl").html(html);
+
+
+            })
+
+    </script>
+
 
 
 }@import views.html.home.main

@@ -353,7 +353,12 @@ input:focus {
 .banner-two {
   background: url(../images/banner_egg1.jpeg)no-repeat;
   background-size: cover;
-  min-height: 250px;
+  min-height: 200px;
+}
+.banner-three {
+    background: url(../images/banner_egg1.jpeg)no-repeat;
+    background-size: cover;
+    min-height: 80px;
 }
 .banner-main {
   width: 50%;
@@ -754,8 +759,8 @@ span.glyphicon.glyphicon-circle-arrow-right:hover {
 
 /*--about start here--*/
 .about {
-	padding:4em 0em 3em 0em;
-	background: #FFFFFF;
+	padding:0em 0em 0em 0em;
+	/*background: #FFFFFF;*/
 }
 .about-left img {
 	width: 100%;
@@ -774,6 +779,24 @@ span.glyphicon.glyphicon-circle-arrow-right:hover {
 	margin: 0px 0px 5px 0px;
 	font-family:'Viga-Regular';
 }
+.about-left h6 {
+    font-size: 3em;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 15px 0px 1px 10px;
+    font-family:'Viga-Regular';
+
+}
+
+.about-left h7 {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #413F3F;
+    margin: 10px 0px 1px 0px;
+    padding-top: 1em;
+    font-family:'Viga-Regular';
+}
+
 .about-left p {
 	font-size: 0.95em;
 	font-weight: 400;
@@ -1415,6 +1438,9 @@ span.glyphicon.glyphicon-grain {
 .banner-two {
   min-height: 180px;
 }
+.banner-three {
+    min-height: 70px;
+}
 .agro-strip-main {
   padding: 3.5em 0em 0em 0em;
 }
@@ -1581,6 +1607,9 @@ h1.grid2 {
 }
 .banner-two {
   min-height: 140px;
+}
+.banner-three {
+    min-height: 70px;
 }
 .header-right {
   width: 60%;
@@ -1749,6 +1778,9 @@ span.glyphicon.glyphicon-grain {
 }
 .banner-two {
   min-height: 110px;
+}
+.banner-three {
+    min-height: 50px;
 }
 .phone {
   width: 55%;
@@ -2028,6 +2060,9 @@ span.glyphicon.glyphicon-download-alt{
 .banner-two {
   min-height: 80px;
 }
+.banner-three {
+    min-height: 40px;
+}
 /*--about--*/
 .about-left h3 {
   font-size: 1.5em;
@@ -2070,6 +2105,10 @@ span.glyphicon.glyphicon-download-alt{
   margin: 0em 0em 1em 0em;
   padding: 0px 10px 0px 0px;
 }
+
+
+
+
 /*--services--*/
 .services {
   padding: 1em 0em 1em 0em;
@@ -2263,20 +2302,7 @@ h4.media-heading {
   font-size: 14px;
 }
 
-    .download {
-        padding:4em 0em 3em 0em;
-        background: #FFFFFF;
 
-    }
-
-    .download-left h3 {
-        font-size: 2em;
-        font-weight: 400;
-        color: #956295;
-        margin: 0px 0px 15px 0px;
-        font-family:'Viga-Regular';
-        border-bottom: 1px solid #e9f3f4;
-    }
 
 
 

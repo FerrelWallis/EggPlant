@@ -14,6 +14,12 @@ GET     /Eggplant/aboutUs                    controllers.HomeController.about
 
 GET     /Eggplant/download                   controllers.HomeController.download
 
+GET     /Eggplant/browse                     controllers.HomeController.browse
+
+GET     /Eggplant/browse/detailInfo          controllers.HomeController.browseInfo
+
+GET     /Eggplant/download/download           controllers.DownloadController.download(name:String)
+
 # An example controller showing how to use dependency injection
 #GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
