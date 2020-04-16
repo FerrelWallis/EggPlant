@@ -1,0 +1,104 @@
+@(path: String, types: String)(implicit session: Session)
+
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("blast/css/bootstrap.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("blast/css/blast.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("font-awesome-4.7.0/css/font-awesome.min.css")">
+
+<script src="@routes.Assets.versioned("blast/js/jquery-3.1.1.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("blast/js/d3.v4.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("blast/js/bootstrap.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("blast/js/blast.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("layer-v3.0/layer/layer.js")" type="text/javascript"></script>
+
+
+
+<style>
+
+</style>
+
+<div id="resultContent">
+
+
+
+</div>
+
+
+<div style="overflow: hidden;position: fixed;right: 10px;bottom: 150px;z-index: 10;">
+    <div style="overflow: hidden;">
+        <div style="padding-top:20px;padding-right:50px;padding-bottom:50px">
+            <a href="#" style="float: right;text-align: center" class="btns">
+                <img src="/assets/images/top_48.png" /><br>
+            回到顶部</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="@routes.Assets.versioned("mscroll/js/mscroll.js")" ></script>
+<script type="text/javascript" src="@routes.Assets.versioned("FileSaver.js-master/FileSaver.min.js")" ></script>
+<script>
+        $(function () {
+
+
+            $.ajax({
+                url: "/Eggplant/balstResult?path=@path"+"&types=@types",
+                type: "post",
+                success: function (data) {
+                    $("#resultContent").html(data.html);
+                    if ("@types" === "blastnGenome") {
+                        $(".detail-info").hide();
+                        let index = 0;
+                        let name = "";
+                        // $.each(data.bar, function (i, v) {
+                        //     if (name != v.seq) {
+                        //         name = v.seq;
+                        //         index = 0;
+                        //     } else {
+                        //         index += 1;
+                        //     }
+                        //     drawBar2(v.seq, v.bar, v.height, v.gen, index,v.max3)
+                        // });
+
+                        $.each(data.block, function (i, v) {
+                            const id = "#synteny" + v.index;
+                            const data = v.data;
+                            const relate = v.relate;
+                            const index = v.index + "-";
+                            DisplayBlock(id, data, relate, index)
+                        })
+                    } else {
+                        $(".blastDraw").hide();
+                    }
+                }
+            });
+
+        });
+
+
+        function toMoreInfo(name) {
+            window.open("/Eggplant/getGeneInfo?id=" + name);
+        }
+
+        function DownByName(name) {
+            var element = "<div id='content'><span id='info'>Query...</span>&nbsp;<img class='runningImage' src='/assets/images/running2.gif' style='width: 30px;height: 20px;'></div>"
+            var index = layer.alert(element, {
+                skin: 'layui-layer-lan',
+                closeBtn: 0,
+                title: "Info",
+                btn: []
+            });
+            window.location.href = "/Eggplant/downloadByName?name=" + name + "&blastType=@types";
+            layer.close(index);
+        }
+
+        function DownByRange(name, obj) {
+            window.location.href = "/Eggplant/downloadByRange?name=" + name + "&range=" + $("." + obj).text() + "&blastType=@types";
+        }
+
+        function openGenomeBrowser(chr,start,end) {
+            var ar = chr.split("-");
+            var host = window.location.hostname;
+            window.open("http://" + host +":8080/jb/index.html?data=RiceRC/" + ar[1] + "/data&loc=" + ar[0] + ": " + start +".." + end + "&tracks=DNA,Annotation");
+        }
+
+
+</script>

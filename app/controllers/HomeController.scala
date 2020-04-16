@@ -29,17 +29,11 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(views.html.browse.browse()) //跳转浏览页面
   }
 
-  def browseInfo=Action{implicit  request=>
-    Ok(views.html.browse.browseInfo())
+//  def blast=Action{implicit request=>
+//    Ok(views.html.blast.blast()) //跳转浏览页面
+//  }
 
-  }
 
-  /*
-  def download=Action{implicit request=>
-    Ok(views.html.download.download())  //跳转下载页
-  }
-
-*/
 
 
 

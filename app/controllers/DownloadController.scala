@@ -6,6 +6,7 @@ import java.awt.Desktop.Action
 import java.io.File
 import java.nio.file.Files
 
+import play.api.libs.json.Json
 import utils.Utils
 
 import scala.concurrent.ExecutionContext
@@ -26,5 +27,12 @@ class DownloadController @Inject()(cc: ControllerComponents)(implicit exec: Exec
     )
 
   }
+
+  def getFiles= Action{implicit request=>
+    val files = new File(Utils.path+"/download").listFiles().map(_.getName)
+    Ok(Json.toJson(files))
+  }
+
+
 
 }

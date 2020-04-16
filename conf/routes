@@ -6,7 +6,7 @@
 # An example controller showing a sample home page
 
 
-GET     /                           controllers.HomeController.index
+GET     /                                    controllers.HomeController.index
 
 GET     /Eggplant/home/index                 controllers.HomeController.home
 
@@ -16,9 +16,35 @@ GET     /Eggplant/download                   controllers.HomeController.download
 
 GET     /Eggplant/browse                     controllers.HomeController.browse
 
-GET     /Eggplant/browse/detailInfo          controllers.HomeController.browseInfo
+#GET     /Eggplant/blast                      controllers.HomeController.blast
 
-GET     /Eggplant/download/download           controllers.DownloadController.download(name:String)
+GET     /Eggplant/download/download          controllers.DownloadController.download(name:String)
+
+GET     /INSERT                              controllers.InsertController.insert
+
+#GET     /CreateLength                        controllers.InsertController.createLength
+
+POST    /Eggplant/getAllEggplant             controllers.BrowseController.getAllEggplant
+
+GET     /Eggplant/getGeneInfo                controllers.BrowseController.getGeneInfo(id:String)
+
+POST    /Eggplant/getSeqsByGeneid            controllers.BrowseController.getSeqsByGeneid(geneid:String)
+
+POST     /Eggplant/getfiles                  controllers.DownloadController.getFiles
+
+GET      /Eggplant/blastBefore               controllers.BlastController.blastBefore
+
+GET      /Eggplant/blastResultBefore         controllers.BlastController.blastResultBefore(path:String,types:String)
+
+POST     /Eggplant/balstResult               controllers.BlastController.blastResult(path:String,types:String)
+
+POST     /Eggplant/balstRun                  controllers.BlastController.blastRun
+
+GET      /Eggplant/downloadByName            controllers.BlastController.downBlast(name: String, blastType: String)
+
+GET      /Eggplant/downloadByRange           controllers.BlastController.downByRange(name: String, range: String, blastType: String)
+
+GET       /testblast                         controllers.testController.testBlast
 
 # An example controller showing how to use dependency injection
 #GET     /count                      controllers.CountController.count

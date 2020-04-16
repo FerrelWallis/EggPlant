@@ -1,0 +1,442 @@
+
+@home.main("Blast") {
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("FormValidation/dist/css/formValidation.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("bootstrap-fileinput-master/css/fileinput.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("bootstrap-sweetalert-master/dist/sweetalert.css")">
+    <script src="@routes.Assets.versioned("FormValidation/dist/js/formValidation.min.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("bootstrap-fileinput-master/js/fileinput.min.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("FormValidation/dist/js/framework/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("layer-v3.0/layer/layer.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("bootstrap-sweetalert-master/dist/sweetalert.min.js")" type="text/javascript"></script>
+
+
+
+  <style>
+            .db {
+                width: 583px;
+            }
+    </style>
+
+    <div class="banner-three">
+            <div class="container">
+                <div class="about-left">
+                    <h6>Blast</h6>
+                </div>
+
+            </div>
+    </div>
+
+    <div class="ba-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="bs-docs-sidebar" role="complementary">
+                        <ul class="nav bs-docs-sidenav">
+                            <li class="active"><a data-toggle="tab" onclick="shiftBlast('g')">Blastn Genome</a></li>
+                            <li><a data-toggle="tab" onclick="shiftBlast('n')">Blastn Gene</a></li>
+                            <li><a data-toggle="tab" onclick="shiftBlast('p')">Blastp</a></li>
+                            @* <li><a href="#blastx" data-toggle="tab">Blastx</a></li>*@
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-9 tab-content myform" >
+
+                    <div class="tab-pane active" id="blastn_genome">
+                        <form class="form-horizontal" method="get" id="formGenome">
+                            <h4 id="blastTitle">Blastn Genome</h4>
+                            <hr>
+
+                            <input class="form-control" id="blastType" name="blastType" value="blastnGenome" style="display: none;">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Type of query:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" onchange="change(this, 'blastn_genome')" name="method">
+                                        <option selected value="text">Text</option>
+                                        <option value="file">File</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="blastn_genomeQueryContent">
+                                <label class="control-label col-sm-3">Enter FASTA sequences:</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control monospace" name="queryText" id="queryText" rows="5"
+                                    ></textarea>
+                                    <span class="help-block">
+                                        e.g.,&nbsp;<a id="showExample" href="#" onclick="showExample('dna', 'formGenome')"><em id="egQuery">
+                                        example</em></a></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="blastn_genomeQueryFile" style="display: none;">
+                                <label class="control-label col-sm-3">upload file:</label>
+                                <div class="col-sm-8">
+                                    <input id="input-1" type="file" class="file control-label" name="file" data-show-preview="false"
+                                    data-show-upload="false" accept=".fa,.fasta">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Evalue:</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" name="evalue" id="evalue" value="1e-5">
+                                </div>
+
+                                <label class="control-label col-sm-3">Word size:</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" name="wordSize" id="wordSize" value="28">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Max target seqs:</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" name="maxTargetSeqs" id="maxTargetSeqs" value="2">
+                                </div>
+
+                            </div>
+
+                            <hr>
+                            <div class="form-group">
+                                <div class="actions col-sm-offset-3 col-sm-3">
+                                    <button type="button" class="btn btn-primary" style="width: 90%;" id="search"
+                                    onclick="blast_2('formGenome')">
+                                        Search
+                                    </button>
+                                </div>
+                                <div class="actions  col-sm-3">
+                                    <button type="reset" class="btn btn-primary" style="width: 90%;">
+                                        Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <a href="#result"><div id="showResult"></div></a>
+
+            <div id="result" style="display: none">
+                <hr>
+                <h4 style="color: black">Result:</h4>
+                <button class="btn btn-primary down" onclick="downloadExcel()">Download</button>
+                <iframe id="frame" style="width: 1200px;" height="1000px" frameborder="0" align="middle">
+
+                </iframe>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script type="text/javascript" src="@routes.Assets.versioned("mscroll/js/mscroll.js")" ></script>
+    <script type="text/javascript" src="@routes.Assets.versioned("FileSaver.js-master/FileSaver.min.js")" ></script>
+
+    <script>
+
+            function shiftBlast(types) {
+                if(types==='g'){
+                    $("#blastTitle").html("Blastn Genome")
+                    $("#formGenome #wordSize").val("28")
+                    $("#blastType").val("blastnGenome")
+                    $("#showExample").removeAttr("onclick");
+                    $("#showExample").attr("onclick","showExample('dna', 'formGenome')")
+                    $("#formGenome #queryText").val(" ");
+                    $("#" + formId).formValidation("revalidateField", "queryText")
+
+                }else if(types==='n'){
+                    $("#blastTitle").html("Blastn Gene")
+                    $("#formGenome #wordSize").val("28")
+                    $("#blastType").val("blastn")
+                    $("#showExample").removeAttr("onclick");
+                    $("#showExample").attr("onclick","showExample('cds', 'formGenome')")
+                    $("#formGenome #queryText").val(" ");
+                    $("#formGenome").formValidation("revalidateField", "queryText")
+
+                }else{
+                    $("#blastTitle").html("Blastp")
+                    $("#formGenome #wordSize").val("3")
+                    $("#blastType").val("blastp")
+                    $("#showExample").removeAttr("onclick");
+                    $("#showExample").attr("onclick","showExample('pep', 'formGenome')")
+                    $("#formGenome #queryText").val(" ");
+                    $("#formGenome").formValidation("revalidateField", "queryText")
+                }
+
+            }
+
+            var excel = "";
+
+
+            var dna = ">Smechr0100001.1\n" +
+                    "ATGTCAGCTTCTCAAGCGCTAGGCGGGCCTTCCCGCTGTGGTTGGGTGCTGGGTCCGTCTCTTGATAAGATCATCAAGAACGTCGCCTGGAGGAAACATT" +
+                    "CGCAGCTCGTCGCTGCCTGCAAGTCCGCTCTCGACAAGCTTGATTCCGTAGTTGACGACCCAGTCGATCCAGCTTCCTGCACCCCTCTCTATGGTCTCTC" +
+                    "TCCGTCGGATGCCGATTTCGTCTTGCAACCCCTCATCATGGCTCTCGATTCTGCCTCTCCCAAAGTTGTTGAACCTGCACTCGATTGCTCCTTCAGGTTG" +
+                    "TTCTCCTTGGGCTTGATCCGCTGCGAGATCGAGACCCCCACCCCCTACCCCACCCCCAGCCCCAACGCTAACCCAAGTCCCTACTCCCACATTTTCCGCC" +
+                    "TAATAGATTCCGTCTGTAAGTGCGGGGCTCTTGGGGATGAAGCGATCGAGCTTGCTGTTCTCAGGGTCTTGCTTTCTGCCATTCGATCTCCCTACGTGCT" +
+                    "TGTTAGAGGTGATTGCCTTGTCCACATTGTTAGGTCCTGTTACAATGTCTATCTAGGAGGCATGAATGGTACCAATCAGATCTGCGCCAAGTCCGTTCTT" +
+                    "GCTCAGATGATGATAATTGTTTTCACAAGAGTGGAGGAGAATTCCATGATGGTGAACTTCAAGACTGTCTCTGTAGCTGAACTCTTGGAGTTCACGGATA" +
+                    "GAAATTTGAACGAGGGCAGCTCTATACAGATGGCCCAGAACTTCCTCAATGAGATTGTGGATGTCAAGTCTAAGGAAGGCATCACTGAATCTAAGTTGTG" +
+                    "TTTGCTGTTGGAGAATGATAACAGTGAAAAGAAGGGTGAGCCCATTGACAGTGAACCGGGTGAAGGAGCTGATCTGAGTGGTTACAATAAGATTAGAGAG" +
+                    "GATGGGTTCATGCTCTTCAAGAATTTGTGCAAGTTGTCTATGAAATTCTCATCACAAGAGCACGCAGATGACAATATTTTGTTAAGGGGGAAAGTACTAT" +
+                    "CATTGGAGCTTCTAAAGGTTATCATGGATAATGCTGGTCCTATTTGGCGCTCAAATGAGAGATTTCTTAATGTTATCAAGCAATTTTTGTGCTTGTCATT" +
+                    "GTTGAAGAACAGTGCACTATCTGTGATGACGATCTTTCAACTTCTTTGTTCAATATTCAAGAACTTATTATCAAAATATAGATCTGGGTTGAAATCAGAA" +
+                    "ATTGGAATCTTCTTCCCCATGCTCATCTTACGTGTGCTGGAGAATGTACTTCAGCCTAGTTTTTTGCAGAAGATGACTGTTTTGGGTTTGCTGGAGGACA" +
+                    "TATCTAAGGATCCCCAGGTTATTATCGATGTATTTGTAAACTATGATTGTGATGTTGATGCTCCTAACATATTTGAAAGGACTGTTAATGGTCTTCTTAA" +
+                    "AACTGCACTTGGTCCGCCTCCTGGTTCCACTACTACGCTGTCCCCAGTCCAAGATATTACATTTCGTTCTGAATCTGTGAAATGCTTAGTCACAATTATA" +
+                    "AAGTCAATGGGGATGTGGATGGACCAACAACTGAAGGTAGGGGATCCCAATCAAGATAAAGTGTCTGATCATGAAGTGTCAGAAGCGGCTACTGGTGTCG" +
+                    "GCGAAGAGGGTAATATAGACTATGAGCTGCATCCGGAAGCGAATTCTGAATTTTCTGGTGCTGCTGCCTTGGAGCAGCGTCGTGCTCATAAATTAGAAAT" +
+                    "ACAGAAAGGCATTTCACTGTTCAACAGAAAGCCTTCAAAGGGTATTGATTTCTTAATGAGCACCAAAAAGATTGGCAATTCCCCAGAAGAAGTAGCTTCT" +
+                    "TTTCTGAAAAATACAACTGGATTGAATCCGACCATCATTGGTGATTATTTGGGTGAAAGAGATGAGTTCCATCTGAAAGTTATGCATGCATATGTCGATT" +
+                    "CTTTTAATTTTGAAGGTATGGACTTTGGTGAATCAATCAGATATTTCCTTCGAGGGTTCAGATTACCTGGTGAAGCTCAGAAGATTGACCGTATAATGGA" +
+                    "GAAGTTTGCGGAGCGCTATTGTAAATGCAATCCTAACTCTTTTACCAGCGCAGATACAGCTTATGTGCTTGCTTACTCTGTGATAATGCTCAATACAGAT" +
+                    "GCACATAATAGCATGGTGAAAGATAAGATGACAAAAGCTGATTTTCTCCGGAACAATCGGGGGATTGACGACGGAAAGGATTTACCTGAAGATTATTTGG" +
+                    "GTGCTCTTTATGACCAAATTGTAAGAAATGAGATAAAGATGAAAGCAGATTCTTCCGCTCCACAAAACAAGCAGGGGAACAGTCTTAATAAGCTGTTGGG" +
+                    "CTTGGATGGTATACTGAATCTAGTATGGAAGCAGCGAGAGGAAAAACCATTGGGTGCAAATGGAATTCTAGTGAAGCATATTCAAGAGCAGTTTAAGGCA" +
+                    "AAATCTGGAAAATCTGAGTCTATTTATTATGTCATTGCAGATCCAGCTATATTGAGATTTATGGTAGAAGTCTGCTGGGGTCCCATGCTTGCTGCTTTCA" +
+                    "GTGTCACCCTAGACCAGAGTGATGATAAGAATGCCACTTCTCAATGTTTGCTAGGTTGCAGGCATGCTGTGCACATTACAGCTGTGATGGGTATGCAGAC" +
+                    "TCAGCGAGATGCTTTTGTCACCACTATGGCAAAGTTCACCAATCTTCATTGTGCGGCCGACATGAAACAAAAAAATGTTGATACAATGAAAACAATAATG" +
+                    "TCAATTGCCATTGAAGATGGGAACTATCTTCATGAAGCATGGGAGCATATATTGACATGTCTATCTCGATTTGAGCATCTGCAGTTGCTGGGGGAGGGTG" +
+                    "CACCATCTGATTCTTCCTTTTTTACTACCTCGAGCTCTGAATCTGAGGAAAAGTCATTGAAGTCAGCTGGATTTCCATCACTGAAGAAAAAAGGGACACT" +
+                    "CCAGAATCCAACTGTTGCTGCTGTTGTTCGAGGGGGTTCATATGATAGCGCAACCGTTGGAGCTAACTCTCCAGCATTGGTGACTCCAGAACAGATAAATAACTTCATTTCAAACTTGAACTTGCTTGATCAGATCGGCAACTTTGAACTAAATCACATATTTGCTCATAGCCAAAGGCTGAACAGTGAAGCAATAGTAGCTTTTGTCAAGGCCCTTTGCAAAGTTTCAATGTCAGAACTACAGTCTCCAACAGATCCCCGTGTATTTAGCCTTACAAAAATTGTTGAAGTTGCGCACTATAACATGAACCGTATCAGATTAGTGTGGTCCCACATATGGAGTGTTCTTTCAGAGTTCTTTGTGGCTGTTGGTTTGTCAGAAAATCTTTCAGTTGCAATTTTTGTTATGGACTCGTTGCGACAACTTGCTATGAAGTTTTTAGAAAGAGAGGAACTGGCGAATTACAACTTTCAGAATGAATTTTTGAGACCATTTGTTATTGTTATGCAGAAAAGTAATTCTGCCGAAATCAGGGAGCTGATAGTTCGTTGTATTTCTCAAATGGTTCTGAGTCGGGTCAATAATGTAAAATCGGGGTGGAAGAGTGTTTTTATGGTTTTTACAGCTGCTGCTGCAGATGAAAGGAAGAATATTGTGTTGCTGGCCTTTGAAACCATGGAAAAGATTGTACGGGAATATTTTCGTTACATCACTGAGACTGAAACATTGACTTTTACGGATTGTGTTAGATGCCTCATCACCTTCACAAACAGCAGATTCAACAGTGATGTTAGCCTCAACGCAATTGCTTTTCTCCGTTTCTGTGCTGTCAAACTTGCAGAAGGGGGCCTTATTAGCAACGAGAAAAACAAAAATAATGATTTAGCCATTCCTGCGGCCGAAAAAGAAGCTTCGGATGGGCTAATCTTCACAGATAAGGATGACTACATGTCTTTCTGGGAGCCTCTGCTCACAGGGTTATCAAGATTGACTTCTGATCCTCGATCAGCTATTAGAAAGAGTGCGTTGGAAGTTCTGTTCAACATCTTGAAGGACCACGGTCATCTCTTCCCACGCCTATTCTGGATTAATGTCTTCAAGTCTGTAATCTATCCAATATTCAGTCCAGTAAATGATAGCACAGAAGCTCAAGTGAAATCCAGATACATACCACCACCAGGTGGATGCTTATGGGACTCTGAAACTTCTGTGGTGGCAACTCAATGTTTGGTGGATTTATTTGTTAATTTCTTTGATATTGTGAGGTCTGAATTGCCCAGTGTAGTCTCTGTAATGGTAGGGTTTATAAAAGGTTCTGGCAAGGATCCTGCAGCCACTGGGGTAGCTTCTGTAATGAGGTTGGCAGGTGATTTGAGAGGCAAATTCATTGAAGAGGAATGGAAAGTTATCTTTCTAGCTCTGGAAGAAGCTTCGTATTCCACTCTGCCCAATTTTCTGAAGCTATTGAGAACAATGGACAACATTGAGATATCTTCTAGTCAGTCCGAAAATGATATGGAAACATCTTCTGGGGCTGGATTGGCAAATGATGAATCAGAGGATGACAACCTGCATACTGCGGGATATGTTGTATCAAGAATGAAAGATCATATAGCGGCTCAGTTGCGCATCATACAGGTGTCGTCTGATGTCTACAATATGTGTCGGCAATCAGTATCAGCTGATACTGTCAATGTCCTCCTTGGAATCTATTCAGCTGTCACTTCTCATGCCCGGCAACTGAAATCTGAGAAAGTTGTACAAGTGAAGCTGCAGAAAGCATGTTCTATCCTTGAGATACCAGAACCTCCACTGGTGTTTTTTGAAAATGAATCCTATCAGAATTACCTCACTTTCTTGCATGGGCTGCTTGTGAACAATTCATCATTTGTCGAAGAGAAGAATATAGAACCAAAACTTGTGGGTGTATGTGAAGAAATTCTGCACATATACTTGGACTGTGCTGGGTTGAGCTCTGTCAAGAGGAAAGCAGATGATAAGGCAATATACCAATGGAATCTTCCCTTAAGTTCGGCTAAGAAGGAAGAACTGGTAGCAAGGACTCCTTTGGTTCTGTCAGTACTACGCATTCTGTGCAGTTGGCAAACTGATTCTTTTAGGAAGTACATTTCTCAGTTGTTCCCATTAATGATAGATCTTGTTCGGAGTGAGCACAGCTCAGGAGAGGTTCAGCGTGAACTAAGCCATTTTTTCCAATCCTGTATCGGCCCTATTATTCTGAAATTGTGA\n";
+             var cds =">Smechr0100001.1\n" +
+                     "ATGTCAGCTTCTCAAGCGCTAGGCGGGCCTTCCCGCTGTGGTTGGGTGCTGGGTCCGTCTCTTGATAAGATCATCAAGAACGTCGCCTGGAGGAAACATTCGCAGCTCGTCGCTGCCTGCAAGTCCGCTCTCGACAAGCTTGATTCCGTAGTTGACGACCCAGTCGATCCAGCTTCCTGCACCCCTCTCTATGGTCTCTCTCCGTCGGATGCCGATTTCGTCTTGCAACCCCTCATCATGGCTCTCGATTCTGCCTCTCCCAAAGTTGTTGAACCTGCACTCGATTGCTCCTTCAGGTTGTTCTCCTTGGGCTTGATCCGCTGCGAGATCGAGACCCCCACCCCCTACCCCACCCCCAGCCCCAACGCTAACCCAAGTCCCTACTCCCACATTTTCCGCCTAATAGATTCCGTCTGTAAGTGCGGGGCTCTTGGGGATGAAGCGATCGAGCTTGCTGTTCTCAGGGTCTTGCTTTCTGCCATTCGATCTCCCTACGTGCTTGTTAGAGGTGATTGCCTTGTCCACATTGTTAGGTCCTGTTACAATGTCTATCTAGGAGGCATGAATGGTACCAATCAGATCTGCGCCAAGTCCGTTCTTGCTCAGATGATGATAATTGTTTTCACAAGAGTGGAGGAGAATTCCATGATGGTGAACTTCAAGACTGTCTCTGTAGCTGAACTCTTGGAGTTCACGGATAGAAATTTGAACGAGGGCAGCTCTATACAGATGGCCCAGAACTTCCTCAATGAGATTGTGGATGTCAAGTCTAAGGAAGGCATCACTGAATCTAAGTTGTGTTTGCTGTTGGAGAATGATAACAGTGAAAAGAAGGGTGAGCCCATTGACAGTGAACCGGGTGAAGGAGCTGATCTGAGTGGTTACAATAAGATTAGAGAGGATGGGTTCATGCTCTTCAAGAATTTGTGCAAGTTGTCTATGAAATTCTCATCACAAGAGCACGCAGATGACAATATTTTGTTAAGGGGGAAAGTACTATCATTGGAGCTTCTAAAGGTTATCATGGATAATGCTGGTCCTATTTGGCGCTCAAATGAGAGATTTCTTAATGTTATCAAGCAATTTTTGTGCTTGTCATTGTTGAAGAACAGTGCACTATCTGTGATGACGATCTTTCAACTTCTTTGTTCAATATTCAAGAACTTATTATCAAAATATAGATCTGGGTTGAAATCAGAAATTGGAATCTTCTTCCCCATGCTCATCTTACGTGTGCTGGAGAATGTACTTCAGCCTAGTTTTTTGCAGAAGATGACTGTTTTGGGTTTGCTGGAGGACATATCTAAGGATCCCCAGGTTATTATCGATGTATTTGTAAACTATGATTGTGATGTTGATGCTCCTAACATATTTGAAAGGACTGTTAATGGTCTTCTTAAAACTGCACTTGGTCCGCCTCCTGGTTCCACTACTACGCTGTCCCCAGTCCAAGATATTACATTTCGTTCTGAATCTGTGAAATGCTTAGTCACAATTATAAAGTCAATGGGGATGTGGATGGACCAACAACTGAAGGTAGGGGATCCCAATCAAGATAAAGTGTCTGATCATGAAGTGTCAGAAGCGGCTACTGGTGTCGGCGAAGAGGGTAATATAGACTATGAGCTGCATCCGGAAGCGAATTCTGAATTTTCTGGTGCTGCTGCCTTGGAGCAGCGTCGTGCTCATAAATTAGAAATACAGAAAGGCATTTCACTGTTCAACAGAAAGCCTTCAAAGGGTATTGATTTCTTAATGAGCACCAAAAAGATTGGCAATTCCCCAGAAGAAGTAGCTTCTTTTCTGAAAAATACAACTGGATTGAATCCGACCATCATTGGTGATTATTTGGGTGAAAGAGATGAGTTCCATCTGAAAGTTATGCATGCATATGTCGATTCTTTTAATTTTGAAGGTATGGACTTTGGTGAATCAATCAGATATTTCCTTCGAGGGTTCAGATTACCTGGTGAAGCTCAGAAGATTGACCGTATAATGGAGAAGTTTGCGGAGCGCTATTGTAAATGCAATCCTAACTCTTTTACCAGCGCAGATACAGCTTATGTGCTTGCTTACTCTGTGATAATGCTCAATACAGATGCACATAATAGCATGGTGAAAGATAAGATGACAAAAGCTGATTTTCTCCGGAACAATCGGGGGATTGACGACGGAAAGGATTTACCTGAAGATTATTTGGGTGCTCTTTATGACCAAATTGTAAGAAATGAGATAAAGATGAAAGCAGATTCTTCCGCTCCACAAAACAAGCAGGGGAACAGTCTTAATAAGCTGTTGGGCTTGGATGGTATACTGAATCTAGTATGGAAGCAGCGAGAGGAAAAACCATTGGGTGCAAATGGAATTCTAGTGAAGCATATTCAAGAGCAGTTTAAGGCAAAATCTGGAAAATCTGAGTCTATTTATTATGTCATTGCAGATCCAGCTATATTGAGATTTATGGTAGAAGTCTGCTGGGGTCCCATGCTTGCTGCTTTCAGTGTCACCCTAGACCAGAGTGATGATAAGAATGCCACTTCTCAATGTTTGCTAGGTTGCAGGCATGCTGTGCACATTACAGCTGTGATGGGTATGCAGACTCAGCGAGATGCTTTTGTCACCACTATGGCAAAGTTCACCAATCTTCATTGTGCGGCCGACATGAAACAAAAAAATGTTGATACAATGAAAACAATAATGTCAATTGCCATTGAAGATGGGAACTATCTTCATGAAGCATGGGAGCATATATTGACATGTCTATCTCGATTTGAGCATCTGCAGTTGCTGGGGGAGGGTGCACCATCTGATTCTTCCTTTTTTACTACCTCGAGCTCTGAATCTGAGGAAAAGTCATTGAAGTCAGCTGGATTTCCATCACTGAAGAAAAAAGGGACACTCCAGAATCCAACTGTTGCTGCTGTTGTTCGAGGGGGTTCATATGATAGCGCAACCGTTGGAGCTAACTCTCCAGCATTGGTGACTCCAGAACAGATAAATAACTTCATTTCAAACTTGAACTTGCTTGATCAGATCGGCAACTTTGAACTAAATCACATATTTGCTCATAGCCAAAGGCTGAACAGTGAAGCAATAGTAGCTTTTGTCAAGGCCCTTTGCAAAGTTTCAATGTCAGAACTACAGTCTCCAACAGATCCCCGTGTATTTAGCCTTACAAAAATTGTTGAAGTTGCGCACTATAACATGAACCGTATCAGATTAGTGTGGTCCCACATATGGAGTGTTCTTTCAGAGTTCTTTGTGGCTGTTGGTTTGTCAGAAAATCTTTCAGTTGCAATTTTTGTTATGGACTCGTTGCGACAACTTGCTATGAAGTTTTTAGAAAGAGAGGAACTGGCGAATTACAACTTTCAGAATGAATTTTTGAGACCATTTGTTATTGTTATGCAGAAAAGTAATTCTGCCGAAATCAGGGAGCTGATAGTTCGTTGTATTTCTCAAATGGTTCTGAGTCGGGTCAATAATGTAAAATCGGGGTGGAAGAGTGTTTTTATGGTTTTTACAGCTGCTGCTGCAGATGAAAGGAAGAATATTGTGTTGCTGGCCTTTGAAACCATGGAAAAGATTGTACGGGAATATTTTCGTTACATCACTGAGACTGAAACATTGACTTTTACGGATTGTGTTAGATGCCTCATCACCTTCACAAACAGCAGATTCAACAGTGATGTTAGCCTCAACGCAATTGCTTTTCTCCGTTTCTGTGCTGTCAAACTTGCAGAAGGGGGCCTTATTAGCAACGAGAAAAACAAAAATAATGATTTAGCCATTCCTGCGGCCGAAAAAGAAGCTTCGGATGGGCTAATCTTCACAGATAAGGATGACTACATGTCTTTCTGGGAGCCTCTGCTCACAGGGTTATCAAGATTGACTTCTGATCCTCGATCAGCTATTAGAAAGAGTGCGTTGGAAGTTCTGTTCAACATCTTGAAGGACCACGGTCATCTCTTCCCACGCCTATTCTGGATTAATGTCTTCAAGTCTGTAATCTATCCAATATTCAGTCCAGTAAATGATAGCACAGAAGCTCAAGTGAAATCCAGATACATACCACCACCAGGTGGATGCTTATGGGACTCTGAAACTTCTGTGGTGGCAACTCAATGTTTGGTGGATTTATTTGTTAATTTCTTTGATATTGTGAGGTCTGAATTGCCCAGTGTAGTCTCTGTAATGGTAGGGTTTATAAAAGGTTCTGGCAAGGATCCTGCAGCCACTGGGGTAGCTTCTGTAATGAGGTTGGCAGGTGATTTGAGAGGCAAATTCATTGAAGAGGAATGGAAAGTTATCTTTCTAGCTCTGGAAGAAGCTTCGTATTCCACTCTGCCCAATTTTCTGAAGCTATTGAGAACAATGGACAACATTGAGATATCTTCTAGTCAGTCCGAAAATGATATGGAAACATCTTCTGGGGCTGGATTGGCAAATGATGAATCAGAGGATGACAACCTGCATACTGCGGGATATGTTGTATCAAGAATGAAAGATCATATAGCGGCTCAGTTGCGCATCATACAGGTGTCGTCTGATGTCTACAATATGTGTCGGCAATCAGTATCAGCTGATACTGTCAATGTCCTCCTTGGAATCTATTCAGCTGTCACTTCTCATGCCCGGCAACTGAAATCTGAGAAAGTTGTACAAGTGAAGCTGCAGAAAGCATGTTCTATCCTTGAGATACCAGAACCTCCACTGGTGTTTTTTGAAAATGAATCCTATCAGAATTACCTCACTTTCTTGCATGGGCTGCTTGTGAACAATTCATCATTTGTCGAAGAGAAGAATATAGAACCAAAACTTGTGGGTGTATGTGAAGAAATTCTGCACATATACTTGGACTGTGCTGGGTTGAGCTCTGTCAAGAGGAAAGCAGATGATAAGGCAATATACCAATGGAATCTTCCCTTAAGTTCGGCTAAGAAGGAAGAACTGGTAGCAAGGACTCCTTTGGTTCTGTCAGTACTACGCATTCTGTGCAGTTGGCAAACTGATTCTTTTAGGAAGTACATTTCTCAGTTGTTCCCATTAATGATAGATCTTGTTCGGAGTGAGCACAGCTCAGGAGAGGTTCAGCGTGAACTAAGCCATTTTTTCCAATCCTGTATCGGCCCTATTATTCTGAAATTGTGA\n"
+             var pep=">Smechr0100001.1\n" +
+                     "MSASQALGGPSRCGWVLGPSLDKIIKNVAWRKHSQLVAACKSALDKLDSVVDDPVDPASCTPLYGLSPSDADFVLQPLIMALDSASPKVVEPALDCSFRLFSLGLIRCEIETPTPYPTPSPNANPSPYSHIFRLIDSVCKCGALGDEAIELAVLRVLLSAIRSPYVLVRGDCLVHIVRSCYNVYLGGMNGTNQICAKSVLAQMMIIVFTRVEENSMMVNFKTVSVAELLEFTDRNLNEGSSIQMAQNFLNEIVDVKSKEGITESKLCLLLENDNSEKKGEPIDSEPGEGADLSGYNKIREDGFMLFKNLCKLSMKFSSQEHADDNILLRGKVLSLELLKVIMDNAGPIWRSNERFLNVIKQFLCLSLLKNSALSVMTIFQLLCSIFKNLLSKYRSGLKSEIGIFFPMLILRVLENVLQPSFLQKMTVLGLLEDISKDPQVIIDVFVNYDCDVDAPNIFERTVNGLLKTALGPPPGSTTTLSPVQDITFRSESVKCLVTIIKSMGMWMDQQLKVGDPNQDKVSDHEVSEAATGVGEEGNIDYELHPEANSEFSGAAALEQRRAHKLEIQKGISLFNRKPSKGIDFLMSTKKIGNSPEEVASFLKNTTGLNPTIIGDYLGERDEFHLKVMHAYVDSFNFEGMDFGESIRYFLRGFRLPGEAQKIDRIMEKFAERYCKCNPNSFTSADTAYVLAYSVIMLNTDAHNSMVKDKMTKADFLRNNRGIDDGKDLPEDYLGALYDQIVRNEIKMKADSSAPQNKQGNSLNKLLGLDGILNLVWKQREEKPLGANGILVKHIQEQFKAKSGKSESIYYVIADPAILRFMVEVCWGPMLAAFSVTLDQSDDKNATSQCLLGCRHAVHITAVMGMQTQRDAFVTTMAKFTNLHCAADMKQKNVDTMKTIMSIAIEDGNYLHEAWEHILTCLSRFEHLQLLGEGAPSDSSFFTTSSSESEEKSLKSAGFPSLKKKGTLQNPTVAAVVRGGSYDSATVGANSPALVTPEQINNFISNLNLLDQIGNFELNHIFAHSQRLNSEAIVAFVKALCKVSMSELQSPTDPRVFSLTKIVEVAHYNMNRIRLVWSHIWSVLSEFFVAVGLSENLSVAIFVMDSLRQLAMKFLEREELANYNFQNEFLRPFVIVMQKSNSAEIRELIVRCISQMVLSRVNNVKSGWKSVFMVFTAAAADERKNIVLLAFETMEKIVREYFRYITETETLTFTDCVRCLITFTNSRFNSDVSLNAIAFLRFCAVKLAEGGLISNEKNKNNDLAIPAAEKEASDGLIFTDKDDYMSFWEPLLTGLSRLTSDPRSAIRKSALEVLFNILKDHGHLFPRLFWINVFKSVIYPIFSPVNDSTEAQVKSRYIPPPGGCLWDSETSVVATQCLVDLFVNFFDIVRSELPSVVSVMVGFIKGSGKDPAATGVASVMRLAGDLRGKFIEEEWKVIFLALEEASYSTLPNFLKLLRTMDNIEISSSQSENDMETSSGAGLANDESEDDNLHTAGYVVSRMKDHIAAQLRIIQVSSDVYNMCRQSVSADTVNVLLGIYSAVTSHARQLKSEKVVQVKLQKACSILEIPEPPLVFFENESYQNYLTFLHGLLVNNSSFVEEKNIEPKLVGVCEEILHIYLDCAGLSSVKRKADDKAIYQWNLPLSSAKKEELVARTPLVLSVLRILCSWQTDSFRKYISQLFPLMIDLVRSEHSSGEVQRELSHFFQSCIGPIILKL*\n"
+
+            $(function () {
+                formValidation();
+            });
+
+
+            function change(element, t) {
+                var value = $(element).find(">option:selected").val();
+                if (value == "text") {
+                    $(".fileinput-remove-button").click();
+                    $(".monospace").val("");
+                    $("#" + t + "QueryContent").show();
+                    $("#" + t + "QueryFile").hide();
+                }else if(value == "geneid"){
+                    $(".fileinput-remove-button").click();
+                    $(".monospace").val("");
+                    $("#" + t + "QueryContent").hide();
+                    $("#" + t + "QueryFile").hide()
+                } else {
+                    $(".monospace").val("");
+                    $("#" + t + "QueryContent").hide();
+                    $("#" + t + "QueryFile").show()
+                }
+            }
+
+            function downloadExcel() {
+                var fileName = "blast_2.txt";
+                var content = excel;
+                var blob = new Blob([content], {
+                    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+                });
+                saveAs(blob, fileName)
+            }
+
+
+            function showExample(type, formId) {
+                var seq = "";
+
+                if (type == "dna"){
+                    seq = dna;
+                } else if (type == "cds") {
+                    seq = cds;
+                }
+                else {
+                    seq=pep;
+                }
+                $("#" + formId + " #queryText").val(seq);
+                $("#" + formId).formValidation("revalidateField", "queryText")
+            }
+
+
+            function blast_2(formId) {
+                var form = $("#" + formId)
+                var fv = form.data("formValidation");
+                fv.validate();
+                if (fv.isValid()) {
+                    var form1 = new FormData($("#" + formId)[0]);
+
+                    var element = "<div id='content'><span id='info'>Query...</span>&nbsp;<img class='runningImage' src='/assets/images/running2.gif' style='width: 30px;height: 20px;'></div>"
+                    var index = layer.alert(element, {
+                        skin: 'layui-layer-lan'
+                        , closeBtn: 0,
+                        title: "Info",
+                        btn: []
+                    });
+
+                    $.ajax({
+                        url: "@routes.BlastController.blastRun()",
+                        type: "post",
+                        processData: false,
+                        contentType: false,
+                        data: form1,
+                        success: function (data) {
+                            if (data.valid === "false") {
+                                layer.close(index);
+                                swal("Error", data.message, "error");
+                                $("#result").hide()
+                            } else {
+                                $("#frame").attr("src", "/Eggplant/blastResultBefore?path=" + data.html + "&types=" + data.types);
+                                excel = data.excel;
+
+                                if (data.types === "blastnGenome") {
+                                    window.setTimeout(function () {
+                                        layer.close(index);
+                                        $("#result").show();
+                                        //click事件不能直接绑定在a标签上，必须在a标签内的元素里
+                                        $("#showResult").click();
+                                    }, 3000)
+                                } else {
+                                    layer.close(index);
+                                    $("#result").show();
+                                    //click事件不能直接绑定在a标签上，必须在a标签内的元素里
+                                    $("#showResult").click();
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+
+
+            function formValidation() {
+                var maxSize = 20480000;
+                var types=document.getElementById("blastTitle");
+              var wordSize ={};
+
+                if(types.textContent==='Blastn Genome'||types==='Blastn Gene'){
+                    wordSize={
+                        notEmpty: {
+                            message: 'Word size is required！'
+                        },
+                        integer: {
+                            message: 'Word size must be intger！'
+                        },
+                        greaterThan: {
+                            value: 4,
+                            message: "Word size must greater than or equal to 4！"
+                        }
+                    }
+                }else{
+                    wordSize={
+                        notEmpty: {
+                                            message: 'Word size is required！'
+                                        },
+                                        integer: {
+                                            message: 'Word size must be intger！'
+                                        },
+                                        between: {
+                                            min: 0,
+                                            max: 8,
+                                            inclusive: false,
+                                            message: "Word size must less than  8！"
+                                        }
+                            }
+                    }
+
+                    $('#formGenome').formValidation({
+                        framework: 'bootstrap',
+                        icon: {
+                            valid: 'glyphicon glyphicon-ok',
+                            invalid: 'glyphicon glyphicon-remove',
+                            validating: 'glyphicon glyphicon-refresh'
+                        },
+                        fields: {
+                            file: {
+                                validators: {
+                                    notEmpty: {
+                                        message: "Query fasta is required!"
+                                    },
+                                    file: {
+                                        extension: 'fa,fasta',
+                                        maxSize: maxSize,
+                                        message: 'Query fasta file must be fasta file and file size must be <= 20MB！'
+                                    }
+                                }
+                            },
+                            queryText: {
+                                validators: {
+                                    notEmpty: {
+                                        message: "Please either enter sequences into the box!"
+                                    },
+                                    callback: {
+                                        message: 'Query sequence length must be <= 20MB!',
+                                        callback: function (seqs) {
+                                            var line = seqs.split("\n");
+                                            var length = 0;
+                                            $.each(line, function (i, v) {
+                                                if (v.indexOf(">") == -1) {
+                                                    length += v.length
+                                                }
+                                            });
+                                            if (length > maxSize) return false;
+                                            else return true;
+                                        }
+                                    }
+                                }
+                            },
+                            evalue: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Evalue is required！'
+                                    },
+                                    numeric: {
+                                        message: 'Evalue must be number！'
+                                    },
+                                    greaterThan: {
+                                        value: 0,
+                                        message: "Evalue must greater than or equal to 0！"
+                                    }
+                                }
+                            },
+                            wordSize: {
+                                validators: {
+                                    wordSize
+                                }
+                            },
+                            maxTargetSeqs: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Max target seqs is required！'
+                                    },
+                                    integer: {
+                                        message: 'Max target seqs must be integer！'
+                                    },
+                                    greaterThan: {
+                                        value: 0,
+                                        message: "Max target seqs must greater than or equal to 0！"
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
+
+
+
+            $("#input-1").fileinput({
+                showPreview: false
+            });
+
+    </script>
+
+
+}

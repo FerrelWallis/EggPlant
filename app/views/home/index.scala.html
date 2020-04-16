@@ -1,5 +1,5 @@
 
-@main("Eggplant Genome Database") {
+@home.main("Eggplant Genome Database") {
 
     <div class="banner">
         <div class="container">
@@ -45,7 +45,7 @@
                     <h3>Browse</h3>
                     <h4>You can view relevant genetic information, which shows gene location, function and sequence information.</h4>
                     <p></p>
-                    <a href="single.html"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
+                    <a href="@routes.HomeController.browse()"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
                 </div>
 
                 <div class="col-md-4 wedo-grid">
@@ -53,7 +53,7 @@
                     <h3>Blast </h3>
                     <h4>Blast includes the function of alignment with genome, gene, and protein sequences.</h4>
                     <p></p>
-                    <a href="single.html"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
+                    <a href="@routes.BlastController.blastBefore()"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
                 </div>
 
                 <div class="col-md-4 wedo-grid">
@@ -70,4 +70,4 @@
     </div>
 
     @home.footer()
-}@import views.html.home.main
+}
