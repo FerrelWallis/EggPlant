@@ -1,73 +1,231 @@
 
 @home.main("Eggplant Genome Database") {
 
-    <div class="banner">
-        <div class="container">
-            <div class="banner-main">
-                <h3>about this project</h3>
-                <p>The eggplant (Solanum melongena L.) is one of the most important vegetable crop species in Japan as well as in other Asian, Middle and Near Eastarn, Mediterranean and African countries.</p>
-                <a href="@routes.HomeController.about()">Read More</a>
-                <div class="clearfix"> </div>
+    @home.header()
+
+    <link rel="stylesheet" href="/assets/img-carousel/carousel.css">
+
+    <div >
+        <div class="ba">
+            <div class="container">
+                <div class="container-fluid" style="padding: 0 0 0 0">
+                    <div id="myNiceCarousel" class="carousel slide" data-ride="carousel" style="height: 350px">
+                            <!-- 圆点指示器 -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myNiceCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myNiceCarousel" data-slide-to="1" class=""></li>
+                            <li data-target="#myNiceCarousel" data-slide-to="2" class=""></li>
+                            <li data-target="#myNiceCarousel" data-slide-to="3" class=""></li>
+                            <li data-target="#myNiceCarousel" data-slide-to="4" class=""></li>
+                            <li data-target="#myNiceCarousel" data-slide-to="5" class=""></li>
+                            <li data-target="#myNiceCarousel" data-slide-to="6" class=""></li>
+                        </ol>
+                            <!-- 轮播项目 -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <a href="#">
+                                    <img alt="First slide" src="/assets/images/茄子艺术照 (44)_small.jpg" style="height:350px;width:100%;">
+                                </a>
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img alt="First slide" src="/assets/images/茄子艺术照 (41)_small.jpg" style="height:350px;width:100%;">
+                                </a>
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img alt="First slide" src="/assets/images/茄子艺术照 (40)_small.jpg" style="height:350px;width:100%;">
+                                </a>
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img alt="First slide" src="/assets/images/茄子艺术照 (47)_small.jpg" style="height:350px;width:100%;">
+                                </a>
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img alt="First slide" src="/assets/images/茄子艺术照 (67)_small.jpg" style="height:350px;width:100%;">
+                                </a>
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img alt="First slide" src="/assets/images/茄子艺术照 (70)_small.jpg" style="height:350px;width:100%;">
+                                </a>
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img class="img_distribution" src="/assets/images/茄子产量世界分布图.png" style="height:350px;width:100%;">
+                                    <h2 class="h3_word">World Distribution of Eggplant Production</h2>
+                                </a>
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+
+
+                        </div>
+                            <!-- 项目切换按钮 -->
+                        <a class="left carousel-control" href="#myNiceCarousel" data-slide="prev">
+                            <span class="icon icon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#myNiceCarousel" data-slide="next">
+                            <span class="icon icon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ba">
+            <div class="container" >
+
+                <div class="col-md-7" style="padding-right: 35px;padding-left: 0px;">
+                    <div class="banner-main">
+                        <h3>About this project</h3>
+                        <p>The eggplant (Solanum melongena L.) is one of the most important vegetable crop species in Japan as well as in other Asian, Middle and Near Eastarn, Mediterranean and African countries. Eggplant belongs to the Solanaceae family including tomato, potato and pepper, but unlike these allies, it is endemic to the Old World. To get this unique solanaceous member up on the stage of genomics and let it act as a crucial cast in molecular genetic and physiological studies, eggplant whole-genome sequencing has been done to construct a draft genome dataset.</p>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="bann-pic">
+                        <div class="banner-main">
+                            <h3>Assembly summary</h3>
+                            <img src="/assets/images/AssemblySummary.PNG" width="100%" style="margin-top: 20px">
+
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-5" style="padding-right: 0px;">
+                    <div class="banner-main">
+                        <h3>Research Institution Information</h3>
+                        <p>瓠瓜基因组网站对单位介绍链接</p>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="ui raised segment">
+                        <h4 class="text-primary"><span class="ui teal ribbon label big"><i class="fas fa-chart-pie"></i>
+                            Related Links</span>
+                        </h4>
+                        <p class="p_mainRight">
+                            <i class="fa fa-chevron-circle-right"></i>
+                            <a href="https://solgenomics.net/" target="_blank">Solanaceae Genomics Network</a>
+                        </p>
+                        <p class="p_mainRight">
+                            <i class="fa fa-chevron-circle-right"></i>
+                            <a href="http://eggplant.kazusa.or.jp/index.html" target="_blank">Eggplant –Nakate Shinkuro-Japan</a>
+                        </p>
+                        <p class="p_mainRight">
+                            <i class="fa fa-chevron-circle-right"></i>
+                            <a href="http://ddlab.dbt.univr.it/eggplant/" target="_blank">Eggplant -67/3-Italian</a>
+                        </p>
+                        <p class="p_mainRight">
+                            <i class="fa fa-chevron-circle-right"></i>
+                            <a href="http://eggplant.kazusa.or.jp/index.html" ></a>
+                            <a href="https://db.cngb.org/data_resources/" target="_blank">Eggplant –guiqie1-China (Accession number CNP0000734)</a>
+                        </p>
+                        <p class="p_mainRight">
+                            <i class="fa fa-chevron-circle-right"></i>
+                            <a href="https://db.cngb.org/search/project/CNP0000317/" target="_blank">Solanum aethiopicum (Accession number CNP0000317)</a>
+                        </p>
+
+                    </div>
+
+                    <div class="ui raised segment">
+                        <h4 class="text-primary">
+                            <span class="ui teal ribbon label big"><i class="fas fa-chart-pie"></i>
+                                Release Notes </span>
+                        </h4>
+
+                        <p class="p_mainRight"><i class="fa fa-chevron-circle-right"></i>
+                            Eggplant Genome database is available online on May 2020.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="ba">
+            <div class="container">
+
+                <div class="col-md-7" style="padding-left: 0px;padding-right: 35px;">
+                    <div class="ui raised segment">
+                        <h4 class="text-primary">
+                            <span class="ui teal ribbon label big">
+                                <i class="fas fa-chart-pie"></i>
+                                Navigation
+                            </span>
+                        </h4>
+                        <br>
+                        <div class="we-do">
+                            <div class="wedo-main">
+                                <div class="col-md-3 wedo-grid">
+                                    <span style="left: 30%" class="glyphicon glyphicon-eye-open" aria-hidden="true"> </span>
+                                    <a href="@routes.HomeController.browse()" class="hvr-wobble-bottom">
+                                        <h3 style="text-align: center">Browse</h3>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-3 wedo-grid" >
+                                    <span style="left: 30%" class="glyphicon glyphicon-list-alt" aria-hidden="true"> </span>
+                                    <a href="@routes.BlastController.blastBefore()" class="hvr-wobble-bottom">
+                                        <h3 style="text-align: center">Blast</h3>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-3 wedo-grid">
+                                    <span style="left: 30%" class="glyphicon glyphicon-download-alt" aria-hidden="true"> </span>
+                                    <a href="@routes.HomeController.download()" class="hvr-wobble-bottom">
+                                        <h3 style="text-align: center">Download</h3>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-3 wedo-grid">
+                                    <span style="left: 30%" class="glyphicon glyphicon-user" aria-hidden="true"> </span>
+                                    <a href="@routes.HomeController.about()" class="hvr-wobble-bottom">
+                                        <h3 style="text-align: center">About Us</h3>
+                                    </a>
+                                </div>
+
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
 
-    <div class="bann-info">
-        <div class="container">
-            <div class="bann-info-main">
-                <div class="col-md-3 bann-grid">
-                    <div class="agro-grain"><span class="glyphicon glyphicon-grain" aria-hidden="true"> </span></div>
-                </div>
-                <div class="col-md-5 bann-grid">
-                    <h2>Navigation</h2>
-                    <p>We provide browsing, blast and download functions. You can also find more information about the project, team and contact information at "about Us".</p>
-
-                </div>
-                <div class="col-md-4 bann-grid">
-                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"> </span>
-                    <h3>Download Files</h3>
-
-                    <a href="@routes.HomeController.download()" class="hvr-wobble-bottom">Download</a>
-
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
 
 
-    <div class="we-do">
-        <div class="container">
-            <div class="wedo-main">
-                <div class="col-md-4 wedo-grid">
-                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"> </span>
-                    <h3>Browse</h3>
-                    <h4>You can view relevant genetic information, which shows gene location, function and sequence information.</h4>
-                    <p></p>
-                    <a href="@routes.HomeController.browse()"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
-                </div>
 
-                <div class="col-md-4 wedo-grid">
-                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"> </span>
-                    <h3>Blast </h3>
-                    <h4>Blast includes the function of alignment with genome, gene, and protein sequences.</h4>
-                    <p></p>
-                    <a href="@routes.BlastController.blastBefore()"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
-                </div>
 
-                <div class="col-md-4 wedo-grid">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
-                    <h3>about Us </h3>
-                    <h4>You can know more information about the project, the team, and our contact information here.</h4>
-                    <p>  </p>
-                    <a href="@routes.HomeController.about()"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> </span></a>
-                </div>
 
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
+
+
+
+
+
+    <script src="/assets/img-carousel/carousel.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@routes.Assets.versioned("zui/myzui.min.js")"></script>
 
     @home.footer()
+
 }

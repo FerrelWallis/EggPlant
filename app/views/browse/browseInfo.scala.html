@@ -2,6 +2,8 @@
 @(row:EggplantRow,length:Int,pfam:String,go:String)
 @home.main("DetailInfo"){
 
+    @home.header2("browse")
+
     <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.versioned("mscroll/css/lz_index.css")" />
     <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.versioned("font-awesome-4.7.0/css/font-awesome.min.css")" />
 
@@ -45,167 +47,171 @@
             </div>
     </div>
 
-    <div id="container" class="clearfix">
-        <div id="content" class="full-width container">
+    <div class="container" >
+        <div id="container" class="clearfix" style="background: #FFFFFF;margin-bottom: 50px;">
+            <div id="content" class="full-width" style="margin-bottom: 0px">
 
-            <div class="box">
-                <h4 class="area">
-                    <div class="area_img">
-                        <i class="fa fa-minus"></i>
-                    </div>
-                    <span class="area_title" data-id="1">Basic</span>
-                </h4>
-                <div class="picture_list" style="display: block;">
-                    <table class="table table-striped table-hover table-bordered" style="table-layout: fixed;
-                        word-wrap: break-word">
-                        <tbody>
-                            <tr>
-                                <th>GeneID</th>
-                                <td>
-                                @row.geneid
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Chromosome</th>
-                                <td>
-                                @row.chr
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Strand</th>
-                                <td>
-                                @row.strand
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Start</th>
-                                <td>
-                                @row.start
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>End</th>
-                                <td>
-                                @row.end
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Length</th>
-                                <td>
+                <div class="box">
+                    <h4 class="area">
+                        <div class="area_img">
+                            <i class="fa fa-minus"></i>
+                        </div>
+                        <span class="area_title" data-id="1">Basic</span>
+                    </h4>
+                    <div class="picture_list" style="display: block;">
+                        <table class="table table-striped table-hover table-bordered" style="table-layout: fixed;
+                            word-wrap: break-word">
+                            <tbody>
+                                <tr>
+                                    <th>GeneID</th>
+                                    <td>
+                                    @row.geneid
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Chromosome</th>
+                                    <td>
+                                    @row.chr
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Strand</th>
+                                    <td>
+                                    @row.strand
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Start</th>
+                                    <td>
+                                    @row.start
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>End</th>
+                                    <td>
+                                    @row.end
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Length</th>
+                                    <td>
                                     @length
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-
-            <div class="box">
-                <h4 class="area">
-                    <div class="area_img">
-                        <i class="fa fa-minus"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <span class="area_title" data-id="1">Function</span>
-                </h4>
-                <div class="picture_list" style="display: block;">
-                    <table id="table" class="table table-striped table-hover table-bordered" style="table-layout: fixed;
-                        word-wrap: break-word">
-                        <tbody>
-                            <tr>
-                                <th>Nr</th>
-                                <td>
-                                @row.nrDes
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Swissprot</th>
-                                <td>
-                                @row.swissDes
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>KEGG</th>
-                                <td>
-                                @row.keggDes
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Pfam</th>
-                                <td>
-                                    <div class="n">
-                                    @pfam
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>GO</th>
-                                <td>
-                                    <div class="n">
-                                    @go
-                                    </div>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
-            </div>
 
 
-            <div class="box" >
-                <h4 class="area">
-                    <div class="area_img">
-                        <i class="fa fa-minus"></i>
+                <div class="box">
+                    <h4 class="area">
+                        <div class="area_img">
+                            <i class="fa fa-minus"></i>
+                        </div>
+                        <span class="area_title" data-id="1">Function</span>
+                    </h4>
+                    <div class="picture_list" style="display: block;">
+                        <table id="table" class="table table-striped table-hover table-bordered" style="table-layout: fixed;
+                            word-wrap: break-word">
+                            <tbody>
+                                <tr>
+                                    <th>Nr</th>
+                                    <td>
+                                    @row.nrDes
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Swissprot</th>
+                                    <td>
+                                    @row.swissDes
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>KEGG</th>
+                                    <td>
+                                    @row.keggDes
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Pfam</th>
+                                    <td>
+                                        <div class="n">
+                                        @pfam
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>GO</th>
+                                    <td>
+                                        <div class="n">
+                                        @go
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <span class="area_title" data-id="1">Sequence</span>
-                </h4>
-                <div class="picture_list" style="display: block;">
-
-                    <table class="table table-striped table-hover table-bordered" style="table-layout: fixed;
-                        word-wrap: break-word">
-                        <tbody>
-                            <tr>
-                                <th>Cds
-                                    <button class="btn-link" onclick="downloadCds()">
-                                        <i class="fa fa-download"></i>
-                                    </button>
-                                </th>
-                                <td class="monospace">
-                                    <div class="seq">
-                                        <div id="cds">
+                </div>
 
 
+                <div class="box" >
+                    <h4 class="area">
+                        <div class="area_img">
+                            <i class="fa fa-minus"></i>
+                        </div>
+                        <span class="area_title" data-id="1">Sequence</span>
+                    </h4>
+                    <div class="picture_list" style="display: block;">
+
+                        <table class="table table-striped table-hover table-bordered" style="table-layout: fixed;
+                            word-wrap: break-word;margin-bottom: 0px;">
+                            <tbody>
+                                <tr>
+                                    <th>Cds
+                                        <button class="btn-link" onclick="downloadCds()">
+                                            <i class="fa fa-download"></i>
+                                        </button>
+                                    </th>
+                                    <td class="monospace">
+                                        <div class="seq">
+                                            <div id="cds">
+
+
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Pep
-                                    <button class="btn-link" onclick="downloadPep()">
-                                        <i class="fa fa-download"></i>
-                                    </button>
-                                </th>
-                                <td class="monospace">
-                                    <div class="seq">
-                                        <div id="pep">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Pep
+                                        <button class="btn-link" onclick="downloadPep()">
+                                            <i class="fa fa-download"></i>
+                                        </button>
+                                    </th>
+                                    <td class="monospace">
+                                        <div class="seq">
+                                            <div id="pep">
 
 
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <script type="text/javascript" src="@routes.Assets.versioned("mscroll/js/mscroll.js")" ></script>
     <script type="text/javascript" src="@routes.Assets.versioned("FileSaver.js-master/FileSaver.min.js")" ></script>
@@ -243,5 +249,6 @@
 
     </script>
 
+    @home.footer()
 
 }

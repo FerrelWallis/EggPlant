@@ -1,10 +1,14 @@
 @home.main("Blast"){
 
+    @home.header2("blast")
+
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("FormValidation/dist/css/formValidation.min.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("bootstrap-fileinput-master/css/fileinput.min.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("bootstrap-sweetalert-master/dist/sweetalert.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/custom.css")">
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/media-queries.css")">
+
+
 
     <script src="@routes.Assets.versioned("FormValidation/dist/js/formValidation.min.js")" type="text/javascript"></script>
     <script src="@routes.Assets.versioned("bootstrap-fileinput-master/js/fileinput.min.js")" type="text/javascript"></script>
@@ -13,262 +17,280 @@
     <script src="@routes.Assets.versioned("bootstrap-sweetalert-master/dist/sweetalert.min.js")" type="text/javascript"></script>
     <script src="@routes.Assets.versioned("js/custom.js")" type="text/javascript"></script>
 
-
-    <div class="banner-three">
-        <div class="container">
-            <div class="about-left">
-                <h6>Blast</h6>
+    <div style="background: #b899bd;height: 59em">
+        <div class="banner-three">
+            <div class="container" >
+                <div class="about-left">
+                    <h6>Blast</h6>
+                </div>
             </div>
+        </div>
+
+        <div class="browse-info">
+            <div class="container" style="background: #b899bd">
+
+                <div style="background: #FFFFFF;padding-left: 10px;padding-right: 10px;padding-top: 10px;">
+                    <div id="container" class="clearfix">
+                        <div id="content" style="width: 100%">
+                            <ul class="tabs-nav">
+                                <li class="active"><a href="#blastnGenome">Blastn Genome</a></li>
+                                <li class=""><a href="#blastn">Blastn Gene</a></li>
+                                <li class=""><a href="#blastp">Blastp</a></li>
+                            </ul>
+                            <div class="tabs-container">
+
+                                <div class="tab-content" style="display: none;">
+                                    <div class="tab-pane active" id="blastnGenome" style="margin-top: 10px;">
+                                        <form class="form-horizontal fv-form fv-form-bootstrap" method="get" id="genomeForm" novalidate="novalidate"><button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                                            <h4 class="blastTitle">Blastn Genome</h4>
+                                            <hr>
+
+                                            <input class="form-control" name="blastType" value="blastnGenome" style="display: none;">
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3 blast_font">Type of query:</label>
+                                                <div class="col-sm-4">
+                                                    <select class="form-control" onchange="change(this, 'blastnGenome')" name="method">
+                                                        <option selected="" value="text">Text</option>
+                                                        <option value="file">File</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group has-feedback" id="blastnGenomeQueryContent">
+                                                <label class="control-label col-sm-3 blast_font">Enter FASTA sequences:</label>
+                                                <div class="col-sm-8">
+                                                    <textarea class="form-control monospace" name="queryText" id="queryText" rows="5" data-fv-field="queryText"></textarea><i class="form-control-feedback" data-fv-icon-for="queryText" style="display: none;"></i>
+                                                    <span class="help-block">
+                                                        e.g.,&nbsp;<a href="#" onclick="showExample('dna', 'genomeForm')"><em id="egQuery">
+                                                        example</em></a></span>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="queryText" data-fv-result="NOT_VALIDATED" style="display: none;">This is not be empty!</small></div>
+                                            </div>
+
+                                            <div class="form-group has-feedback" id="blastnGenomeQueryFile" style="display: none;">
+                                                <label class="control-label col-sm-3 blast_font">upload file:</label>
+                                                <div class="col-sm-8">
+                                                    <input id="input-1" type="file" class="file control-label" name="file" data-show-preview="false"
+                                                    data-show-upload="false" accept=".fa,.fasta">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label col-sm-3 blast_font">Evalue:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="evalue" id="evalue" value="1e-5" data-fv-field="evalue"><i class="form-control-feedback" data-fv-icon-for="evalue" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue is required！</small><small class="help-block" data-fv-validator="numeric" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must be number！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must greater than or equal to 0！</small></div>
+
+                                                <label class="control-label col-sm-3 blast_font">Word size:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="wordSize" id="wordSize" value="28" data-fv-field="wordSize"><i class="form-control-feedback" data-fv-icon-for="wordSize" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must be intger！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must greater than or equal to 4！</small></div>
+
+                                            </div>
+
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label col-sm-3 blast_font">Max target seqs:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="maxTargetSeqs" id="mCharacteristic" value="2" data-fv-field="maxTargetSeqs"><i class="form-control-feedback" data-fv-icon-for="maxTargetSeqs" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must be integer！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must greater than or equal to 0！</small></div>
+                                            </div>
+
+                                            <hr>
+                                            <div class="form-group">
+                                                <div class="actions col-sm-offset-3 col-sm-3">
+                                                    <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="blast('genomeForm')">
+                                                        Search</button>
+                                                </div>
+                                                <div class="actions  col-sm-3">
+                                                    <button type="reset" class="btn btn-primary" onclick="Reset('blastnGenome')" style="width: 90%;">
+                                                        Reset</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tab-content" style="display: none;">
+                                    <div class="tab-pane active" id="blastn" style="margin-top: 10px;">
+                                        <form class="form-horizontal fv-form fv-form-bootstrap" method="get" id="form" novalidate="novalidate"><button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                                            <h4 class="blastTitle">Blastn Gene</h4>
+                                            <hr>
+
+                                            <input class="form-control" name="blastType" value="blastn" style="display: none;">
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3  blast_font">Type of query:</label>
+                                                <div class="col-sm-4">
+                                                    <select class="form-control" onchange="change(this, 'blastn')" name="method">
+                                                        <option selected="" value="text">Text</option>
+                                                        <option value="file">File</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group has-feedback" id="blastnQueryContent">
+                                                <label class="control-label col-sm-3 blast_font">Enter FASTA sequences:</label>
+                                                <div class="col-sm-8">
+                                                    <textarea class="form-control monospace" name="queryText" id="queryText" rows="5" data-fv-field="queryText"></textarea><i class="form-control-feedback" data-fv-icon-for="queryText" style="display: none;"></i>
+                                                    <span class="help-block">
+                                                        e.g.,&nbsp;<a href="#" onclick="showExample('dna', 'form')"><em id="egQuery">
+                                                        example</em></a></span>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="queryText" data-fv-result="NOT_VALIDATED" style="display: none;">This is not be empty!</small></div>
+                                            </div>
+
+                                            <div class="form-group has-feedback" id="blastnQueryFile" style="display: none;">
+                                                <label class="control-label col-sm-3 blast_font">upload file:</label>
+                                                <div class="col-sm-8">
+                                                    <input id="input-1" type="file" class="file control-label" name="file" data-show-preview="false"
+                                                    data-show-upload="false" accept=".fa,.fasta">
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label col-sm-3 blast_font">Evalue:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="evalue" id="evalue" value="1e-5" data-fv-field="evalue"><i class="form-control-feedback" data-fv-icon-for="evalue" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue is required！</small><small class="help-block" data-fv-validator="numeric" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must be number！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must greater than or equal to 0！</small></div>
+
+                                                <label class="control-label col-sm-3 blast_font">Word size:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="wordSize" id="wordSize" value="28" data-fv-field="wordSize"><i class="form-control-feedback" data-fv-icon-for="wordSize" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must be intger！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must greater than or equal to 4！</small></div>
+
+                                            </div>
+
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label col-sm-3 blast_font">Max target seqs:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="maxTargetSeqs" id="mCharacteristic" value="2" data-fv-field="maxTargetSeqs"><i class="form-control-feedback" data-fv-icon-for="maxTargetSeqs" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must be integer！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must greater than or equal to 0！</small></div>
+                                            </div>
+
+                                            <hr>
+                                            <div class="form-group">
+                                                <div class="actions col-sm-offset-3 col-sm-3">
+                                                    <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="blast('form')">
+                                                        Search</button>
+                                                </div>
+                                                <div class="actions  col-sm-3">
+                                                    <button type="reset" onclick="Reset('blastn')" class="btn btn-primary" style="width: 90%;">
+                                                        Reset</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="tab-content" style="display: block;">
+                                    <div class="tab-pane active" id="blastp" style="margin-top: 10px;">
+                                        <form class="form-horizontal fv-form fv-form-bootstrap" method="get" id="blastpForm" novalidate="novalidate"><button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                                            <h4 class="blastTitle">Blastp</h4>
+                                            <hr>
+
+                                            <input class="form-control" name="blastType" value="blastp" style="display: none;">
+
+                                            <div>
+
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3 blast_font">Type of query:</label>
+                                                <div class="col-sm-4">
+                                                    <select class="form-control" onchange="change(this, 'blastp')" name="method">
+                                                        <option selected="" value="text">Text</option>
+                                                        <option value="file">File</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group has-feedback" id="blastpQueryContent">
+                                                <label class="control-label col-sm-3 blast_font">Enter FASTA sequences:</label>
+                                                <div class="col-sm-8">
+                                                    <textarea class="form-control monospace" name="queryText" id="queryText" rows="5" data-fv-field="queryText"></textarea><i class="form-control-feedback" data-fv-icon-for="queryText" style="display: none;"></i>
+                                                    <span class="help-block">
+                                                        e.g.,&nbsp;<a href="#" onclick="showExample('protein', 'blastpForm')"><em id="egQuery">
+                                                        example</em></a></span>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="queryText" data-fv-result="NOT_VALIDATED" style="display: none;">This is not be empty!</small></div>
+                                            </div>
+
+                                            <div class="form-group has-feedback" id="blastpQueryFile" style="display: none;">
+                                                <label class="control-label col-sm-3 blast_font">Upload file:</label>
+                                                <div class="col-sm-8">
+                                                    <input id="input-1" type="file" class="file control-label" name="file" data-show-preview="false"
+                                                    data-show-upload="false" accept=".fa,.fasta">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label col-sm-3 blast_font">Evalue:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="evalue" id="evalue" value="1e-5" data-fv-field="evalue"><i class="form-control-feedback" data-fv-icon-for="evalue" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue is required！</small><small class="help-block" data-fv-validator="numeric" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must be number！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must greater than or equal to 0！</small></div>
+
+                                                <label class="control-label col-sm-3 blast_font">Word size:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="wordSize" id="wordSize" value="3" data-fv-field="wordSize"><i class="form-control-feedback" data-fv-icon-for="wordSize" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must be intger！</small><small class="help-block" data-fv-validator="between" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must less than  8！</small></div>
+
+                                            </div>
+
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label col-sm-3 blast_font">Max target seqs:</label>
+                                                <div class="col-sm-2">
+                                                    <input class="form-control" name="maxTargetSeqs" id="mCharacteristic" value="2" data-fv-field="maxTargetSeqs"><i class="form-control-feedback" data-fv-icon-for="maxTargetSeqs" style="display: none;"></i>
+                                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must be integer！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must greater than or equal to 0！</small></div>
+                                            </div>
+
+                                            <hr>
+                                            <div class="form-group">
+                                                <div class="actions col-sm-offset-3 col-sm-3">
+                                                    <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="blast('blastpForm')">
+                                                        Search</button>
+                                                </div>
+                                                <div class="actions  col-sm-3">
+                                                    <button type="reset" class="btn btn-primary" onclick="Reset('blastp')" style="width: 90%;">
+                                                        Reset</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="container" style="background: #b899bd;">
+                <a href="#result"><div id="showResult"></div></a>
+
+                <div id="result" style="display: none; background: #b899bd;">
+                    <hr>
+                    <h4 style="color: black;float: left;font-size: 15px;">Result:</h4>
+                    <button class="btn btn-primary down" onclick="downloadExcel()" style="float: left;margin-left: 15px;margin-top: -5px">Download</button>
+                    <iframe id="frame" style="width: 1000px;" height="1000px" frameborder="0" align="middle">
+
+                    </iframe>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
-    <div id="container" class="clearfix">
-        <div id="content" class="full-width">
-            <ul class="tabs-nav">
-                <li class="active"><a href="#blastnGenome">Blastn Genome</a></li>
-                <li class=""><a href="#blastn">Blastn Gene</a></li>
-                <li class=""><a href="#blastp">Blastp</a></li>
-            </ul>
-            <div class="tabs-container">
-
-                <div class="tab-content" style="display: none;">
-                    <div class="tab-pane active" id="blastnGenome" style="margin-top: 10px;">
-                        <form class="form-horizontal fv-form fv-form-bootstrap" method="get" id="genomeForm" novalidate="novalidate"><button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
-                            <h4 class="blastTitle">Blastn Genome</h4>
-                            <hr>
-
-                            <input class="form-control" name="blastType" value="blastnGenome" style="display: none;">
-
-                            <div class="form-group">
-                                <label class="control-label col-sm-3">Type of query:</label>
-                                <div class="col-sm-4">
-                                    <select class="form-control" onchange="change(this, 'blastnGenome')" name="method">
-                                        <option selected="" value="text">Text</option>
-                                        <option value="file">File</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group has-feedback" id="blastnGenomeQueryContent">
-                                <label class="control-label col-sm-3">Enter FASTA sequences:</label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control monospace" name="queryText" id="queryText" rows="5" data-fv-field="queryText"></textarea><i class="form-control-feedback" data-fv-icon-for="queryText" style="display: none;"></i>
-                                    <span class="help-block">
-                                        e.g.,&nbsp;<a href="#" onclick="showExample('dna', 'genomeForm')"><em id="egQuery">
-                                        example</em></a></span>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="queryText" data-fv-result="NOT_VALIDATED" style="display: none;">This is not be empty!</small></div>
-                            </div>
-
-                            <div class="form-group has-feedback" id="blastnGenomeQueryFile" style="display: none;">
-                                <label class="control-label col-sm-3">upload file:</label>
-                                <div class="col-sm-8">
-                                    <input id="input-1" type="file" class="file control-label" name="file" data-show-preview="false"
-                                    data-show-upload="false" accept=".fa,.fasta">
-                                </div>
-                            </div>
 
 
 
-                            <div class="form-group has-feedback">
-                                <label class="control-label col-sm-3">Evalue:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="evalue" id="evalue" value="1e-5" data-fv-field="evalue"><i class="form-control-feedback" data-fv-icon-for="evalue" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue is required！</small><small class="help-block" data-fv-validator="numeric" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must be number！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must greater than or equal to 0！</small></div>
-
-                                <label class="control-label col-sm-3">Word size:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="wordSize" id="wordSize" value="28" data-fv-field="wordSize"><i class="form-control-feedback" data-fv-icon-for="wordSize" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must be intger！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must greater than or equal to 4！</small></div>
-
-                            </div>
-
-                            <div class="form-group has-feedback">
-                                <label class="control-label col-sm-3">Max target seqs:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="maxTargetSeqs" id="mCharacteristic" value="2" data-fv-field="maxTargetSeqs"><i class="form-control-feedback" data-fv-icon-for="maxTargetSeqs" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must be integer！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must greater than or equal to 0！</small></div>
-                            </div>
-
-                            <hr>
-                            <div class="form-group">
-                                <div class="actions col-sm-offset-3 col-sm-3">
-                                    <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="blast('genomeForm')">
-                                        Search</button>
-                                </div>
-                                <div class="actions  col-sm-3">
-                                    <button type="reset" class="btn btn-primary" onclick="Reset('blastnGenome')" style="width: 90%;">
-                                        Reset</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="tab-content" style="display: none;">
-                    <div class="tab-pane active" id="blastn" style="margin-top: 10px;">
-                        <form class="form-horizontal fv-form fv-form-bootstrap" method="get" id="form" novalidate="novalidate"><button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
-                            <h4 class="blastTitle">Blastn Gene</h4>
-                            <hr>
-
-                            <input class="form-control" name="blastType" value="blastn" style="display: none;">
-
-                            <div class="form-group">
-                                <label class="control-label col-sm-3">Type of query:</label>
-                                <div class="col-sm-4">
-                                    <select class="form-control" onchange="change(this, 'blastn')" name="method">
-                                        <option selected="" value="text">Text</option>
-                                        <option value="file">File</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group has-feedback" id="blastnQueryContent">
-                                <label class="control-label col-sm-3">Enter FASTA sequences:</label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control monospace" name="queryText" id="queryText" rows="5" data-fv-field="queryText"></textarea><i class="form-control-feedback" data-fv-icon-for="queryText" style="display: none;"></i>
-                                    <span class="help-block">
-                                        e.g.,&nbsp;<a href="#" onclick="showExample('dna', 'form')"><em id="egQuery">
-                                        example</em></a></span>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="queryText" data-fv-result="NOT_VALIDATED" style="display: none;">This is not be empty!</small></div>
-                            </div>
-
-                            <div class="form-group has-feedback" id="blastnQueryFile" style="display: none;">
-                                <label class="control-label col-sm-3">upload file:</label>
-                                <div class="col-sm-8">
-                                    <input id="input-1" type="file" class="file control-label" name="file" data-show-preview="false"
-                                    data-show-upload="false" accept=".fa,.fasta">
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group has-feedback">
-                                <label class="control-label col-sm-3">Evalue:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="evalue" id="evalue" value="1e-5" data-fv-field="evalue"><i class="form-control-feedback" data-fv-icon-for="evalue" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue is required！</small><small class="help-block" data-fv-validator="numeric" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must be number！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must greater than or equal to 0！</small></div>
-
-                                <label class="control-label col-sm-3">Word size:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="wordSize" id="wordSize" value="28" data-fv-field="wordSize"><i class="form-control-feedback" data-fv-icon-for="wordSize" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must be intger！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must greater than or equal to 4！</small></div>
-
-                            </div>
-
-                            <div class="form-group has-feedback">
-                                <label class="control-label col-sm-3">Max target seqs:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="maxTargetSeqs" id="mCharacteristic" value="2" data-fv-field="maxTargetSeqs"><i class="form-control-feedback" data-fv-icon-for="maxTargetSeqs" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must be integer！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must greater than or equal to 0！</small></div>
-                            </div>
-
-                            <hr>
-                            <div class="form-group">
-                                <div class="actions col-sm-offset-3 col-sm-3">
-                                    <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="blast('form')">
-                                        Search</button>
-                                </div>
-                                <div class="actions  col-sm-3">
-                                    <button type="reset" onclick="Reset('blastn')" class="btn btn-primary" style="width: 90%;">
-                                        Reset</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="tab-content" style="display: block;">
-                    <div class="tab-pane active" id="blastp" style="margin-top: 10px;">
-                        <form class="form-horizontal fv-form fv-form-bootstrap" method="get" id="blastpForm" novalidate="novalidate"><button type="submit" class="fv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
-                            <h4 class="blastTitle">Blastp</h4>
-                            <hr>
-
-                            <input class="form-control" name="blastType" value="blastp" style="display: none;">
-
-                            <div>
-
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="control-label col-sm-3">Type of query:</label>
-                                <div class="col-sm-4">
-                                    <select class="form-control" onchange="change(this, 'blastp')" name="method">
-                                        <option selected="" value="text">Text</option>
-                                        <option value="file">File</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group has-feedback" id="blastpQueryContent">
-                                <label class="control-label col-sm-3">Enter FASTA sequences:</label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control monospace" name="queryText" id="queryText" rows="5" data-fv-field="queryText"></textarea><i class="form-control-feedback" data-fv-icon-for="queryText" style="display: none;"></i>
-                                    <span class="help-block">
-                                        e.g.,&nbsp;<a href="#" onclick="showExample('protein', 'blastpForm')"><em id="egQuery">
-                                        example</em></a></span>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="queryText" data-fv-result="NOT_VALIDATED" style="display: none;">This is not be empty!</small></div>
-                            </div>
-
-                            <div class="form-group has-feedback" id="blastpQueryFile" style="display: none;">
-                                <label class="control-label col-sm-3">Upload file:</label>
-                                <div class="col-sm-8">
-                                    <input id="input-1" type="file" class="file control-label" name="file" data-show-preview="false"
-                                    data-show-upload="false" accept=".fa,.fasta">
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group has-feedback">
-                                <label class="control-label col-sm-3">Evalue:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="evalue" id="evalue" value="1e-5" data-fv-field="evalue"><i class="form-control-feedback" data-fv-icon-for="evalue" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue is required！</small><small class="help-block" data-fv-validator="numeric" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must be number！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="evalue" data-fv-result="NOT_VALIDATED" style="display: none;">Evalue must greater than or equal to 0！</small></div>
-
-                                <label class="control-label col-sm-3">Word size:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="wordSize" id="wordSize" value="3" data-fv-field="wordSize"><i class="form-control-feedback" data-fv-icon-for="wordSize" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must be intger！</small><small class="help-block" data-fv-validator="between" data-fv-for="wordSize" data-fv-result="NOT_VALIDATED" style="display: none;">Word size must less than  8！</small></div>
-
-                            </div>
-
-                            <div class="form-group has-feedback">
-                                <label class="control-label col-sm-3">Max target seqs:</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" name="maxTargetSeqs" id="mCharacteristic" value="2" data-fv-field="maxTargetSeqs"><i class="form-control-feedback" data-fv-icon-for="maxTargetSeqs" style="display: none;"></i>
-                                    <small class="help-block" data-fv-validator="notEmpty" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs is required！</small><small class="help-block" data-fv-validator="integer" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must be integer！</small><small class="help-block" data-fv-validator="greaterThan" data-fv-for="maxTargetSeqs" data-fv-result="NOT_VALIDATED" style="display: none;">Max target seqs must greater than or equal to 0！</small></div>
-                            </div>
-
-                            <hr>
-                            <div class="form-group">
-                                <div class="actions col-sm-offset-3 col-sm-3">
-                                    <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="blast('blastpForm')">
-                                        Search</button>
-                                </div>
-                                <div class="actions  col-sm-3">
-                                    <button type="reset" class="btn btn-primary" onclick="Reset('blastp')" style="width: 90%;">
-                                        Reset</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <a href="#result"><div id="showResult"></div></a>
-
-            <div id="result" style="display: none">
-                <hr>
-                <h4 style="color: black;float: left">Result:</h4>
-                <button class="btn btn-primary down" onclick="downloadExcel()" style="float: left;margin-left: 15px;margin-top: -5px">Download</button>
-                <iframe id="frame" style="width: 1200px;" height="1000px" frameborder="0" align="middle">
-
-                </iframe>
-
-            </div>
-
-        </div>
-    </div>
 
 
     <script type="text/javascript" src="@routes.Assets.versioned("mscroll/js/mscroll.js")" ></script>
@@ -433,12 +455,15 @@
                                         $("#result").show();
                                         //click事件不能直接绑定在a标签上，必须在a标签内的元素里
                                         $("#showResult").click();
-                                    }, 3000)
+                                    }, 4000)
                                 } else {
-                                    layer.close(index);
-                                    $("#result").show();
-                                    //click事件不能直接绑定在a标签上，必须在a标签内的元素里
-                                    $("#showResult").click();
+                                    window.setTimeout(function () {
+                                        layer.close(index);
+                                        $("#result").show();
+                                        //click事件不能直接绑定在a标签上，必须在a标签内的元素里
+                                        $("#showResult").click();
+                                    }, 2000)
+
                                 }
                             }
                         }

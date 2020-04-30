@@ -1,0 +1,79 @@
+/** {padding: 0;margin: 0;font-family: "微软雅黑";font-size: 14px;}*/
+ul,li {list-style: none;}
+a {text-decoration: none;color: black;}
+.box{
+    /*width: 300px;*/
+    /*height: 225px;*/
+    /*margin: 20px auto;*/
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1.5em;
+}
+.box-1 ul{}
+.box-1 ul li{
+    width: 280px;
+    height: 225px;
+    position: relative;
+    overflow: hidden;
+}
+.box-1 ul li img {
+    display:block;
+    width: 280px;
+    height: 225px;
+}
+.box-1 ul li h2{position: absolute;left: 0;bottom: 0;height: 40px;width:300px;background: rgba(125,125,120,.4);text-indent: 2em;
+    font-size: 15px;line-height: 40px;text-overflow: ellipsis;overflow: hidden;
+    white-space: nowrap;font-weight: normal;color: ghostwhite}
+.ul_pic{
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 3em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+}
+.h2_word{
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 40px;
+    width:100%;
+    background: rgba(125,125,120,.4);
+    text-align: center;
+    /*text-indent: 2em;*/
+    font-size: 15px;
+    line-height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: normal;
+    color: ghostwhite
+}
+.img_distribution{
+    display:block;
+    width: 360px;
+    height: 250px;
+}
+.h3_word{
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 40px;
+    width:100%;
+    background: rgba(125,125,120,.4);
+    text-align: center;
+    /*text-indent: 2em;*/
+    font-size: 15px;
+    line-height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: normal;
+    color: ghostwhite
+}
+.img_RAxML{
+    display:block;
+    width: 760px;
+    height: 350px;
+}

@@ -1,38 +1,55 @@
 
-<div class="header">
-    <div class="container">
-        <div class="header-main">
-            <div class="header-right">
-                <div class="logo">
-                    <h1><a href="index.html">Eggplant Genome Database</a></h1>
+<div style="background: rgba(184, 153, 189, 0.73)">
+
+    <div class="header">
+        <div class="container">
+            <div class="header-main">
+
+
+                <div class="header-right">
+                    <img src="/assets/images/logo.png" class="logo_img">
+                    <div class="logo">
+                        <h1><a href="@routes.HomeController.index()">Eggplant Genome Database</a></h1>
+                    </div>
                 </div>
+
+
+                <div class="clearfix"> </div>
             </div>
-            <div class="clearfix"> </div>
         </div>
     </div>
-</div>
 
-<div class="top-navg-main">
-    <div class="container">
-        <div class="top-navg">
-            <span class="menu"> <img src="/assets/images/icon.png" alt=""/></span>
-            <ul class="res">
-                <li><a class="active hvr-sweep-to-bottom" href="@routes.HomeController.index()">Home</a></li>
-                <li><a class="hvr-sweep-to-bottom" href="@routes.HomeController.browse()">Browse</a></li>
-                <li><a class="hvr-sweep-to-bottom" href="@routes.BlastController.blastBefore()">Blast</a></li>
-                <li><a class="hvr-sweep-to-bottom" href="@routes.HomeController.download()">Download</a></li>
-                <li><a class="hvr-sweep-to-bottom" href="@routes.HomeController.about()">about</a></li>
-            </ul>
-            <script>
+
+
+
+    <div class="top-navg-main">
+        <div class="container" >
+            <div class="top-navg">
+                <span class="menu"> <img src="/assets/images/icon.png" alt=""/></span>
+                <ul class="res" >
+                    <li><a class="hvr-sweep-to-bottom green" href="@routes.HomeController.index()">Home</a></li>
+                    <li><a class="hvr-sweep-to-bottom" href="@routes.HomeController.browse()" >Browse</a></li>
+                    <li><a class="hvr-sweep-to-bottom" href="@routes.BlastController.blastBefore()">Blast</a></li>
+                    <li><a class="hvr-sweep-to-bottom" href="@routes.HomeController.download()">Download</a></li>
+                    <li><a class="hvr-sweep-to-bottom" href="@routes.HomeController.about()">About</a></li>
+                </ul>
+
+
+                <script>
+
+
                     $( "span.menu" ).click(function() {
                         $( "ul.res" ).slideToggle( 300, function() {
 
                         });
                     });
             </script>
+
+            </div>
         </div>
     </div>
 </div>
+
 
 
 

@@ -1,8 +1,10 @@
-@main("AboutUs"){
+@home.main("AboutUs"){
 
-    <!--top nav end here-->
-<!--banner start here-->
-	<div class="banner-three">
+	@home.header2("about")
+
+	<link rel="stylesheet" href="/assets/img-carousel/carousel.css">
+
+	<div class="banner-three" >
 			<div class="container">
 				<div class="about-left">
 					<h6>About Us</h6>
@@ -10,45 +12,100 @@
 
 			</div>
 	</div>
-<!--banner end here-->
-<!--start-about-->
-<div class="about">
-	<div class="container">
-		<div class="about-main">
-			<div class="about-left">
-				<h3>about this Project</h3>
-				<p>The eggplant (Solanum melongena L.) is one of the most important vegetable crop species in Japan as well as in other Asian, Middle and Near Eastarn, Mediterranean and African countries. Eggplant belongs to the Solanaceae family including tomato, potato and pepper, but unlike these allies, it is endemic to the Old World. To get this unique solanaceous member up on the stage of genomics and let it act as a crucial cast in molecular genetic and physiological studies, eggplant whole-genome sequencing has been done to construct a draft genome dataset.</p>
+
+	<div class="browse-info">
+		<div class="container" >
+			<div class="about-left" style="padding-left: 10px;padding-right: 10px;padding-bottom: 10px;padding-top: 10px;background: #FFFFFF" >
+
+				<div>
+					<h3 style="margin-left: 10px;">Contacts</h3>
+					<p style="margin-bottom: 10px;margin-left: 10px;">If you have any questions or Suggestions, please contact us.</p>
+					<div class="col-md-4"><h4>Name：</h4><p>Qingzhen Wei</p><h4>Name：</h4><p>Chonglai Bao</p><h4>Telephone：</h4><p>0571-82408211</p></div>
+					<div class="col-md-8"><h4>E-mail：</h4><p>weiqz@@mail.zaas.ac.cn (Coordinator)</p><h4>E-mail：</h4><p>baocl@@mail.zaas.ac.cn (Group leader)</p></div>
+
+					<div class="clearfix"> </div>
+				</div>
+
+
+			</div>
+			<div class="about-left" style="padding-left: 10px;padding-right: 10px;padding-bottom: 10px;padding-top: 10px;background: #FFFFFF" >
+
+				<div>
+					<h3 style="margin-left: 10px;">Our Team</h3>
+
+					<div class="container-fluid" style="margin-top: 20px">
+						<div id="myNiceCarousel" class="carousel slide" data-ride="carousel" style="height: 350px">
+								<!-- 圆点指示器 -->
+							<ol class="carousel-indicators">
+								<li data-target="#myNiceCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myNiceCarousel" data-slide-to="1" class=""></li>
+								<li data-target="#myNiceCarousel" data-slide-to="2" class=""></li>
+								<li data-target="#myNiceCarousel" data-slide-to="3" class=""></li>
+								<li data-target="#myNiceCarousel" data-slide-to="4" class=""></li>
+								<li data-target="#myNiceCarousel" data-slide-to="5" class=""></li>
+							</ol>
+								<!-- 轮播项目 -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<img alt="First slide" src="/assets/images/茄子艺术照 (44)_small.jpg" style="height:350px;width:100%;">
+
+									<div class="carousel-caption">
+									</div>
+								</div>
+								<div class="item">
+									<img alt="First slide" src="/assets/images/茄子艺术照 (41)_small.jpg" style="height:350px;width:100%;">
+									<div class="carousel-caption">
+									</div>
+								</div>
+								<div class="item">
+									<img alt="First slide" src="/assets/images/茄子艺术照 (40)_small.jpg" style="height:350px;width:100%;">
+									<div class="carousel-caption">
+									</div>
+								</div>
+								<div class="item">
+									<img alt="First slide" src="/assets/images/茄子艺术照 (47)_small.jpg" style="height:350px;width:100%;">
+									<div class="carousel-caption">
+									</div>
+								</div>
+								<div class="item">
+									<img alt="First slide" src="/assets/images/茄子艺术照 (67)_small.jpg" style="height:350px;width:100%;">
+									<div class="carousel-caption">
+									</div>
+								</div>
+								<div class="item">
+									<img alt="First slide" src="/assets/images/RAxML_bipartitions_small.png" style="height:350px;width:100%;">
+									<h2 class="h3_word">RAxML_bipartitions</h2>
+									<div class="carousel-caption">
+									</div>
+								</div>
+							</div>
+								<!-- 项目切换按钮 -->
+							<a class="left carousel-control" href="#myNiceCarousel" data-slide="prev">
+								<span class="icon icon-chevron-left"></span>
+							</a>
+							<a class="right carousel-control" href="#myNiceCarousel" data-slide="next">
+								<span class="icon icon-chevron-right"></span>
+							</a>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+
+
 			</div>
 		</div>
-	</div>
-</div>
 
-<div class="about">
-	<div class="container">
-		<div class="about-main">
-			<div class="about-left">
-				<h3>Our Team</h3>
-				<p>团队信息</p>
-		    	<p>团队信息</p>
-			</div>
-		</div>
 	</div>
-</div>
 
-<div class="about">
-	<div class="container">
-		<div class="about-left" >
-			<h3>Contacts</h3>
-			 <h4>Email:</h4>
-				<p>123456123@@xxx.edu.cn</p>
-				<h4>Tel:</h4>
-				<p>123456123</p>
-				<h4>Address:</h4>
-				<p>xx省xx市xx区xx路xx号xx室</p>
-		</div>
-	</div>
-</div>
+
+
+
+
+
+	<script type="text/javascript" src="@routes.Assets.versioned("zui/myzui.min.js")"></script>
+
+
 
 	@home.footer()
 
-}@import views.html.home.main
+}

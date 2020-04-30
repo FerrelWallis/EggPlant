@@ -12,6 +12,14 @@ class testController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(views.html.test.blastTest())
   }
 
+  def testSlider = Action {implicit request=>
+    Ok(views.html.test.fruit())
+  }
+
+  def testImage = Action {implicit request=>
+    Ok(views.html.test.bigImage())
+  }
+
 
 
 }

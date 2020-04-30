@@ -54,7 +54,7 @@ class BrowseController @Inject()(eggplantDao:EggplantDao, cc: ControllerComponen
         go += line + "\n"
       }
 
-      Ok(views.html.browse.browseInfo(x,Integer.parseInt(x.end)-Integer.parseInt(x.start),pfam,go))
+      Ok(views.html.browse.browseInfo(x,Integer.parseInt(x.end)-Integer.parseInt(x.start)+1,pfam,go))
     }
   }
 

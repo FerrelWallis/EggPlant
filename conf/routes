@@ -45,6 +45,8 @@ GET      /Eggplant/downloadByName            controllers.BlastController.downBla
 GET      /Eggplant/downloadByRange           controllers.BlastController.downByRange(name: String, range: String, blastType: String)
 
 GET       /testblast                         controllers.testController.testBlast
+GET       /fruit                             controllers.testController.testSlider
+GET       /Image                             controllers.testController.testImage
 
 # An example controller showing how to use dependency injection
 #GET     /count                      controllers.CountController.count

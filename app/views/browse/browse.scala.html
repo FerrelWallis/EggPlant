@@ -1,5 +1,7 @@
 @home.main("Browse"){
 
+    @home.header2("browse")
+
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("bootstrap-table-master/dist/bootstrap-table.min.css")">
 
     <script src="@routes.Assets.versioned("bootstrap-table-master/dist/bootstrap-table.js")" type="text/javascript"></script>
@@ -8,43 +10,51 @@
     <script src="@routes.Assets.versioned("bootstrap-fileinput-master/js/locales/zh.js")" type="text/javascript"></script>
     <script type="text/javascript" src="@routes.Assets.versioned("bootstrap/js/bootstrap.min.js")"> </script>
 
-    <div class="banner-three">
+
+    <div style="background: #b899bd">
+        <div class="banner-three">
             <div class="container">
                 <div class="about-left">
                     <h6>Browse</h6>
                 </div>
             </div>
-    </div>
-
-    <div class="browse-info">
-        <div class="container">
-            <label>Select the columns to display:</label>
-
-                <!--多选框 id为checkbox 后面由SetColumns动态生成选择框-->
-            <div id="checkbox" class="checkbox">
-            </div>
-
-                <!--data-toolbar：设置装按钮的容器为id为toolbar的。-->
-            <div id="toolbar">
-                    &nbsp;Keyword：
-            </div>
-
-                <!--bootstrap table属性：data-pagination：设置是否显示页码数 data-search：设置search框 -->
-                <!--data-toolbar：设置装按钮的容器为id为toolbar的。-->
-                <!--data-page-list：用于设置选择每页显示的条数 前提：pagination设为true，启用了分页功能。
-      --默认为[10, 25, 50, 100]，即可以选择”每页显示10/25/50/100条记录”，
-      --data-search-align：搜索框的位置，默认right（最右），可选left-->
-            <table class="display table table-bordered" id="table" data-pagination="true" data-search="true"
-            data-toolbar="#toolbar" data-page-list="[10, 25, 50, 100, all]" data-search-align="left" data-multiple-search="true">
-                <thead>
-                    <tr>
-                        <th data-field='geneid' data-sortable='true' id="marker">GeneID</th>
-                    </tr>
-                </thead>
-            </table>
         </div>
 
+        <div class="browse-info">
+            <div class="container" >
+                <div style="padding-left: 10px;padding-right: 10px;padding-bottom: 10px;padding-top: 10px;background: #FFFFFF" >
+                    <label style="font-size: 15px">Select the columns to display:</label>
+
+                        <!--多选框 id为checkbox 后面由SetColumns动态生成选择框-->
+                    <div id="checkbox" class="checkbox">
+                    </div>
+
+                        <!--data-toolbar：设置装按钮的容器为id为toolbar的。-->
+                    <div id="toolbar">
+                            &nbsp;Keyword：
+                    </div>
+
+                        <!--bootstrap table属性：data-pagination：设置是否显示页码数 data-search：设置search框 -->
+                        <!--data-toolbar：设置装按钮的容器为id为toolbar的。-->
+                        <!--data-page-list：用于设置选择每页显示的条数 前提：pagination设为true，启用了分页功能。
+      --默认为[10, 25, 50, 100]，即可以选择”每页显示10/25/50/100条记录”，
+      --data-search-align：搜索框的位置，默认right（最右），可选left-->
+                    <table class="display table table-bordered" id="table" data-pagination="true" data-search="true"
+                    data-toolbar="#toolbar" data-page-list="[10, 25, 50, 100, all]" data-search-align="left" data-multiple-search="true">
+                        <thead>
+                            <tr>
+                                <th data-field='geneid' data-sortable='true' id="marker">GeneID</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
     </div>
+
+
 
 
 

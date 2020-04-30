@@ -1,23 +1,29 @@
 @main("Download") {
 
-    <div class="banner-three">
+    @home.header2("download")
+
+    <div style="background: #b899bd">
+        <div class="banner-three">
             <div class="container">
                 <div class="about-left">
                     <h6>Download</h6>
                 </div>
 
             </div>
-    </div>
+        </div>
 
-    <div class="download-info">
-        <div class="container">
-            <div class="about-left" >
-                <h7>Genome data : </h7>
-                <ul id="filesUrl">
-                </ul>
+        <div class="download-info">
+            <div class="container">
+                <div class="about-left" style="padding: 10px 10px 17em 10px;height: 100%;margin-bottom: 3em;background: #FFFFFF" >
+                    <h7>Genome data : </h7>
+                    <ul id="filesUrl" style="font-size: 1.2em;">
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+
+
 
     @home.footer()
 
@@ -26,12 +32,25 @@
 
             $(function () {
 
+
+                var files=["01.SME-HQ-reference.fasta",
+                    "02.SME-HQ.gff",
+                    "03.SME-HQ-cds.fasta",
+                    "04.SME-HQ-pep.fasta",
+                    "05.SME-HQ-NR.txt",
+                    "06.SME-HQ-KEGG.txt",
+                    "07.SME-HQ-Swissprot.txt",
+                    "08.SME-HQ-Iprscan.txt",
+                    "09.SME-HQ-Iprscan-golist.txt",
+                    "10.SME-HQ-Iprscan-pfamlist.txt",
+                    "11.SME-HQ-iprscan-wego.txt"]
+
                 $.ajax({
                     url:"@routes.DownloadController.getFiles()",
                     type:"post",
                     success:function (download) {
                         var html = "";
-                        $.each(download,function (i,v) {
+                        $.each(files,function (i,v) {
                             html += "<li><a href='/Eggplant/download/download?name=" + v + "' target='_blank'>" + v + "</a></li>"
                         });
 

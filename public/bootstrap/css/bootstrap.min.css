@@ -2461,14 +2461,14 @@ textarea.input-lg,textarea.form-group-lg .form-control,select[multiple].input-lg
     background-color:#333
 }
 .btn-primary {
-    color:#fff;
-    background-color:#428bca;
-    border-color:#357ebd
+    color: #fff;
+    background-color: #956295;
+    border-color: #954991;
 }
 .btn-primary:hover,.btn-primary:focus,.btn-primary.focus,.btn-primary:active,.btn-primary.active,.open>.dropdown-toggle.btn-primary {
-    color:#fff;
-    background-color:#3071a9;
-    border-color:#285e8e
+    color: #fff;
+    background-color: #954991;
+    border-color: #956295;
 }
 .btn-primary:active,.btn-primary.active,.open>.dropdown-toggle.btn-primary {
     background-image:none
